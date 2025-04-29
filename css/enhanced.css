@@ -519,6 +519,65 @@ body.dark-mode .theme-toggle {
   transform: translateY(0);
 }
 
+/* Enhanced Form Styling */
+.contact-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--dark-color);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: white;
+  transition: var(--transition-normal);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--dark-color);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Dark mode form styles */
+body.dark-mode .form-group label {
+  color: var(--light-color);
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group textarea {
+  background-color: #384156;
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--light-color);
+}
+
+body.dark-mode .form-group input:focus,
+body.dark-mode .form-group textarea:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
+}
+
 /* Progress circle */
 .progress-circle {
   position: relative;

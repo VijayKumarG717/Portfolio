@@ -77,6 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function initTextAnimation() {
         const textElements = document.querySelectorAll('.text-animate');
         
+        // Check if elements are already visible to prevent re-animation
+        textElements.forEach((element) => {
+            if (element.classList.contains('visible')) {
+                return;
+            }
+        });
+        
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
@@ -84,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
                     entry.target.classList.add('visible');
                     observer.unobserve(entry.target);
                 }
@@ -92,8 +99,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
         
         textElements.forEach((element, index) => {
-            element.style.transitionDelay = `${index * 0.1}s`;
-            observer.observe(element);
+            // Check if element is already animated
+            if (!element.classList.contains('visible')) {
+                element.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(element);
+            }
         });
     }
 

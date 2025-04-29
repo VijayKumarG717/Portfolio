@@ -362,6 +362,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load projects if container exists
     const projectContainer = document.querySelector('.projects .modern-grid');
     if (projectContainer) {
+        // Clear any existing projects
+        projectContainer.innerHTML = '';
+        
+        // Load all projects
         loadProjects('.projects .modern-grid');
         
         // Initialize filter buttons
