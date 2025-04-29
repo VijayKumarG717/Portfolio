@@ -516,28 +516,27 @@ section {
 
 .skill-bar {
     height: 10px;
+    background-color: rgba(226, 232, 240, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.skill-progress-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 5px;
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+.skill-progress {
+    height: 10px;
     background-color: rgba(226, 232, 240, 0.5);
     border-radius: 5px;
     overflow: hidden;
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.skill-progress {
-    height: 100%;
-    background: var(--gradient-1);
-    border-radius: 5px;
-    position: relative;
-    animation: fillBar 1.5s ease-out forwards;
-    transform-origin: left;
-}
-
-@keyframes fillBar {
-    from {
-        transform: scaleX(0);
-    }
-    to {
-        transform: scaleX(1);
-    }
 }
 
 .skill-progress::after {
@@ -1351,6 +1350,24 @@ footer::before {
 .percentage {
     font-weight: 600;
     color: var(--primary-color);
+}
+
+/* Skill bars */
+.skill-bar {
+    height: 10px;
+    background-color: rgba(226, 232, 240, 0.8);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.skill-progress-fill {
+    height: 100%;
+    background: var(--gradient-1);
+    border-radius: 5px;
+    width: 0;
+    transition: width 1s ease-in-out;
 }
 
 /* Enhanced form elements */
