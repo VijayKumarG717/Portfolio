@@ -200,7 +200,7 @@ section {
 }
 
 /* Hero Section */
-.hero {
+.hero, .hero-section {
     height: 100vh;
     display: flex;
     align-items: center;
@@ -210,7 +210,7 @@ section {
     overflow: hidden;
 }
 
-.hero::before {
+.hero::before, .hero-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -227,7 +227,7 @@ section {
     opacity: 0.3;
 }
 
-.hero .container {
+.hero .container, .hero-section .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -238,6 +238,7 @@ section {
 .hero-content {
     flex: 1;
     padding-right: 2rem;
+    color: white;
 }
 
 .hero-content h1 {
@@ -247,6 +248,45 @@ section {
     line-height: 1.2;
     color: white;
     text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.hero-description {
+    margin-bottom: 1.5rem;
+}
+
+.profession {
+    font-size: 1.5rem;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.hero-focus {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+}
+
+.skill-tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.skill-tag {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
 }
 
 .highlight {
@@ -292,6 +332,7 @@ section {
 .cta-buttons {
     display: flex;
     gap: 1rem;
+    margin-top: 2rem;
 }
 
 .hero-image {
@@ -1522,28 +1563,30 @@ footer::before {
 /* Modern Skills Section Styling */
 .skills-modern-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+    margin-top: 3rem;
 }
 
 .skills-column {
-    background-color: var(--card-bg);
+    background-color: white;
     border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .skills-column:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
 .skill-category {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-align: center;
     position: relative;
 }
@@ -1551,7 +1594,7 @@ footer::before {
 .skill-category::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -12px;
     left: 50%;
     transform: translateX(-50%);
     width: 50px;
@@ -1561,20 +1604,20 @@ footer::before {
 }
 
 .skill-badge-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .skill-badge {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--dark-color);
 }
 
 .skill-badge i {
     font-size: 1.5rem;
-    margin-right: 10px;
+    margin-right: 15px;
     color: var(--primary-color);
     width: 30px;
     text-align: center;
@@ -1582,16 +1625,16 @@ footer::before {
 
 .skill-meter {
     height: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     overflow: hidden;
     position: relative;
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
 }
 
 .skill-meter-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     border-radius: 5px;
     width: 0;
     transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1600,9 +1643,22 @@ footer::before {
 .skill-percentage {
     position: absolute;
     right: 0;
-    top: -20px;
-    font-size: 0.8rem;
-    color: var(--text-light);
+    top: -25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+@media (max-width: 992px) {
+    .skills-modern-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-modern-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Modern Contact Section Styling */
@@ -1614,13 +1670,14 @@ footer::before {
 }
 
 .contact-info {
-    background-color: var(--card-bg);
+    background-color: white;
     border-radius: 12px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .contact-card {
@@ -1633,14 +1690,14 @@ footer::before {
 }
 
 .contact-card:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .contact-icon {
     width: 45px;
     height: 45px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1651,11 +1708,11 @@ footer::before {
 .contact-details h3 {
     font-size: 1.1rem;
     margin-bottom: 0.25rem;
-    color: var(--text-color);
+    color: var(--dark-color);
 }
 
 .contact-details p {
-    color: var(--text-light);
+    color: var(--gray-color);
     font-size: 0.9rem;
 }
 
@@ -1665,15 +1722,15 @@ footer::before {
     gap: 1rem;
     margin-top: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .social-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-color);
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--dark-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1682,16 +1739,17 @@ footer::before {
 }
 
 .social-icon:hover {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
     transform: translateY(-3px);
 }
 
 .contact-form-container {
-    background-color: var(--card-bg);
+    background-color: white;
     border-radius: 12px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .modern-form {
@@ -1709,16 +1767,16 @@ footer::before {
 .form-group label {
     font-weight: 500;
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--dark-color);
 }
 
 .form-group input, 
 .form-group textarea {
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     padding: 0.8rem 1rem;
-    color: var(--text-color);
+    color: var(--dark-color);
     transition: all 0.3s ease;
 }
 
@@ -1726,24 +1784,24 @@ footer::before {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    background-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+    background-color: rgba(0, 0, 0, 0.02);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
 }
 
 .form-group.error input,
 .form-group.error textarea {
-    border-color: #ff5252;
-    background-color: rgba(255, 82, 82, 0.05);
+    border-color: var(--danger-color);
+    background-color: rgba(239, 68, 68, 0.05);
 }
 
 .error-message {
-    color: #ff5252;
+    color: var(--danger-color);
     font-size: 0.8rem;
     margin-top: 0.3rem;
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
     border: none;
     border-radius: 8px;
@@ -1760,7 +1818,7 @@ footer::before {
 
 .submit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(var(--primary-rgb), 0.3);
+    box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
 }
 
 .submit-btn:active {
@@ -1798,12 +1856,55 @@ footer::before {
     }
     
     .skills-modern-container {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 768px) {
-    .skills-modern-container {
-        grid-template-columns: 1fr;
-    }
+/* Interactive buttons for hero section */
+.interactive-btn {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: white;
+    z-index: 1;
+    margin-right: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.interactive-btn:first-child {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+}
+
+.interactive-btn:last-child {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.interactive-btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.interactive-btn:hover {
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.interactive-btn:hover:before {
+    width: 100%;
 } 
