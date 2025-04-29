@@ -77,7 +77,8 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="home" class="hero">
+        <section id="home" class="hero-section">
+            <div id="stars-container"></div>
             <div class="animated-bg"></div>
             <div class="container">
                 <div class="hero-content" data-aos="fade-up">
@@ -129,48 +130,118 @@
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="section skills-section">
+        <section id="skills" class="section">
             <div class="container">
-                <h2 class="section-title">🛠️ Skills</h2>
+                <div class="section-title">
+                    <h2>My Skills</h2>
+                    <div class="underline"></div>
+                </div>
                 
-                <div class="skills-container">
-                    <div class="skill-category">
-                        <h3>Programming Languages</h3>
-                        <p>C, Python, Java (OOP), HTML, CSS, JavaScript</p>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Tools</h3>
-                        <p>Next.js, React, Tailwind CSS, MongoDB, Stripe Integration, Visual Studio Code, Git & GitHub, Prompt Engineering for GPT</p>
-                    </div>
-                    
-                    <div class="skill-category">
-                        <h3>Skills</h3>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Frontend Development</span>
-                                <span class="percentage">90%</span>
+                <div class="skills-modern-container">
+                    <div class="skills-column">
+                        <h3 class="skill-category">Frontend</h3>
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fab fa-html5"></i>
+                                <span>HTML/CSS</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress-fill" data-percentage="90%"></div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="75%"></div>
+                                <span class="skill-percentage">75%</span>
                             </div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">React & Next.js</span>
-                                <span class="percentage">85%</span>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fab fa-js"></i>
+                                <span>JavaScript</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress-fill" data-percentage="85%"></div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="70%"></div>
+                                <span class="skill-percentage">70%</span>
                             </div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-info">
-                                <span class="skill-name">Backend Development</span>
-                                <span class="percentage">75%</span>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fab fa-bootstrap"></i>
+                                <span>Bootstrap</span>
                             </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress-fill" data-percentage="75%"></div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="65%"></div>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-column">
+                        <h3 class="skill-category">Programming</h3>
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="80%"></div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fab fa-java"></i>
+                                <span>Java</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="60%"></div>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fas fa-code"></i>
+                                <span>C/C++</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="55%"></div>
+                                <span class="skill-percentage">55%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skills-column">
+                        <h3 class="skill-category">Tools & Libraries</h3>
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fas fa-camera"></i>
+                                <span>OpenCV</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="85%"></div>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fas fa-table"></i>
+                                <span>Pandas</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="80%"></div>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-badge-container">
+                            <div class="skill-badge">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Excel</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" data-percentage="85%"></div>
+                                <span class="skill-percentage">85%</span>
                             </div>
                         </div>
                     </div>
@@ -349,71 +420,82 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact">
+        <section id="contact" class="section">
             <div class="container">
-                <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+                <div class="section-title">
+                    <h2>Contact Me</h2>
+                    <div class="underline"></div>
+                </div>
                 
-                <div class="modern-grid" data-aos="fade-up" data-aos-delay="100">
-                    <div class="modern-card">
-                        <div class="contact-details">
-                            <div class="contact-item">
+                <div class="contact-modern">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
                                 <i class="fas fa-envelope"></i>
-                                <div>
-                                    <h4>Email</h4>
-                                    <a href="mailto:viaykumar160902@gmail.com">viaykumar160902@gmail.com</a>
-                                </div>
                             </div>
-                            
-                            <div class="contact-item">
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p>vijaypattar006@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
-                                <div>
-                                    <h4>Phone</h4>
-                                    <a href="tel:+910123456789">+91 0123 456 789</a>
-                                </div>
                             </div>
-                            
-                            <div class="contact-item">
+                            <div class="contact-details">
+                                <h3>Phone</h3>
+                                <p>+91 8147597373</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <div>
-                                    <h4>Location</h4>
-                                    <p>Vijayawada, Andhra Pradesh, India</p>
-                                </div>
                             </div>
-                            
-                            <div class="contact-item">
+                            <div class="contact-details">
+                                <h3>Location</h3>
+                                <p>Bangalore, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://github.com/vijaypattar06" target="_blank" class="social-icon">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/vijay-pattar/" target="_blank" class="social-icon">
                                 <i class="fab fa-linkedin"></i>
-                                <div>
-                                    <h4>LinkedIn</h4>
-                                    <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank">linkedin.com/in/vijay-kumar-3423a020b</a>
-                                </div>
-                            </div>
+                            </a>
+                            <a href="https://twitter.com/vijaypattar06" target="_blank" class="social-icon">
+                                <i class="fab fa-twitter"></i>
+                            </a>
                         </div>
                     </div>
                     
-                    <div class="modern-card">
-                        <form class="contact-form">
+                    <div class="contact-form-container">
+                        <form class="modern-form">
                             <div class="form-group">
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" placeholder="Enter your name">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" placeholder="Your name">
                             </div>
                             
                             <div class="form-group">
-                                <label for="email">Your Email</label>
-                                <input type="email" id="email" placeholder="Enter your email">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Your email">
                             </div>
                             
                             <div class="form-group">
                                 <label for="subject">Subject</label>
-                                <input type="text" id="subject" placeholder="Enter subject">
+                                <input type="text" id="subject" placeholder="Subject">
                             </div>
                             
                             <div class="form-group">
                                 <label for="message">Message</label>
-                                <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+                                <textarea id="message" rows="5" placeholder="Your message"></textarea>
                             </div>
                             
-                            <button type="submit" class="interactive-btn">
-                                <span>Send Message</span>
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
                             </button>
                         </form>
                     </div>
@@ -444,5 +526,6 @@
     <script src="./js/script.js"></script>
     <script src="./js/enhanced.js"></script>
     <script src="./js/project-data.js"></script>
+    <script src="./js/stars.js"></script>
 </body>
 </html> 

@@ -193,126 +193,205 @@ document.querySelectorAll('.project-card').forEach(card => {
     });
 });
 
-// Animate skill bars when scrolled into view
+// Skill Bar Animation
 function animateSkillBars() {
-    const skillsSection = document.querySelector('.skills-section');
+    const skillMeters = document.querySelectorAll('.skill-meter-fill');
     
-    if (!skillsSection) return;
-    
-    const skillBars = skillsSection.querySelectorAll('.skill-progress-fill');
-    skillBars.forEach(bar => {
-        const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
-        // Initially set width to 0
-        bar.style.width = '0';
+    skillMeters.forEach(meter => {
+        const percentage = meter.getAttribute('data-percentage');
+        
+        // Use Intersection Observer to animate when skill meters come into view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Wait a tiny bit before starting the animation
+                    setTimeout(() => {
+                        meter.style.width = percentage;
+                    }, 200);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        observer.observe(meter);
     });
+}
+
+// Modern Skills Section Animation
+function initSkillMeters() {
+    const skillMeters = document.querySelectorAll('.skill-meter-fill');
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    const skillBars = skillsSection.querySelectorAll('.skill-progress-fill');
-                    skillBars.forEach(bar => {
-                        const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
-                        bar.style.width = percentage;
-                    });
-                }, 300);
+                const percentage = entry.target.getAttribute('data-percentage');
+                entry.target.style.width = percentage;
                 observer.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.2 });
     
-    observer.observe(skillsSection);
+    skillMeters.forEach(meter => {
+        // Initially set width to 0
+        meter.style.width = '0%';
+        observer.observe(meter);
+    });
 }
 
-// Contact form submission with validation
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm) {
+// Modern Contact Form Handling
+function setupContactForm() {
+    const contactForm = document.querySelector('.modern-form');
+    if (!contactForm) return;
+    
+    const nameInput = contactForm.querySelector('input[name="name"]');
+    const emailInput = contactForm.querySelector('input[name="email"]');
+    const subjectInput = contactForm.querySelector('input[name="subject"]');
+    const messageInput = contactForm.querySelector('textarea[name="message"]');
+    const submitButton = contactForm.querySelector('.submit-btn');
+    
+    // Add input validation
+    emailInput.addEventListener('blur', () => {
+        validateEmail(emailInput);
+    });
+    
+    nameInput.addEventListener('blur', () => {
+        validateRequired(nameInput, 'Please enter your name');
+    });
+    
+    messageInput.addEventListener('blur', () => {
+        validateRequired(messageInput, 'Please enter your message');
+    });
+    
+    // Form submission
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // Get form values
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const message = document.getElementById('message').value;
+        // Validate all fields
+        const isNameValid = validateRequired(nameInput, 'Please enter your name');
+        const isEmailValid = validateEmail(emailInput);
+        const isMessageValid = validateRequired(messageInput, 'Please enter your message');
         
-        // Simple validation
-        let isValid = true;
-        const errors = [];
-        
-        if (name.trim() === '') {
-            isValid = false;
-            errors.push('Name is required');
-            document.getElementById('name').classList.add('error');
-        } else {
-            document.getElementById('name').classList.remove('error');
-        }
-        
-        if (email.trim() === '') {
-            isValid = false;
-            errors.push('Email is required');
-            document.getElementById('email').classList.add('error');
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            isValid = false;
-            errors.push('Please enter a valid email');
-            document.getElementById('email').classList.add('error');
-        } else {
-            document.getElementById('email').classList.remove('error');
-        }
-        
-        if (message.trim() === '') {
-            isValid = false;
-            errors.push('Message is required');
-            document.getElementById('message').classList.add('error');
-        } else {
-            document.getElementById('message').classList.remove('error');
-        }
-        
-        // If valid, show success message
-        if (isValid) {
-            // In a real scenario, you would send the form data to a server
-            // For demonstration, let's show a success message
-            const formContent = contactForm.innerHTML;
-            contactForm.innerHTML = `
-                <div class="success-message">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Thank you for your message!</h3>
-                    <p>I'll get back to you soon.</p>
-                    <button id="resetForm" class="btn primary-btn">Send Another Message</button>
-                </div>
-            `;
+        if (isNameValid && isEmailValid && isMessageValid) {
+            // Show sending state
+            const originalButtonText = submitButton.innerHTML;
+            submitButton.classList.add('sending');
+            submitButton.innerHTML = 'Sending <div class="spinner"></div>';
+            submitButton.disabled = true;
             
-            // Reset form when clicking the button
-            document.getElementById('resetForm').addEventListener('click', () => {
-                contactForm.innerHTML = formContent;
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('message').value = '';
-            });
-        } else {
-            // Show error messages
-            const errorElement = document.createElement('div');
-            errorElement.classList.add('error-message');
-            errorElement.innerHTML = `
-                <ul>
-                    ${errors.map(err => `<li>${err}</li>`).join('')}
-                </ul>
-            `;
-            
-            // Remove any existing error messages
-            const existingError = contactForm.querySelector('.error-message');
-            if (existingError) {
-                existingError.remove();
-            }
-            
-            // Add the new error message
-            contactForm.prepend(errorElement);
-            
-            // Scroll to error message
-            errorElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Simulate sending
+            setTimeout(() => {
+                // Replace this with actual form submission
+                showFormSuccess();
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Reset button
+                submitButton.classList.remove('sending');
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+            }, 2000);
         }
     });
 }
+
+function validateEmail(input) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const formGroup = input.closest('.form-group');
+    const errorMessage = formGroup.querySelector('.error-message');
+    
+    if (!input.value.trim()) {
+        setInputError(formGroup, errorMessage, 'Email is required');
+        return false;
+    } else if (!emailRegex.test(input.value.trim())) {
+        setInputError(formGroup, errorMessage, 'Please enter a valid email address');
+        return false;
+    } else {
+        clearInputError(formGroup, errorMessage);
+        return true;
+    }
+}
+
+function validateRequired(input, message) {
+    const formGroup = input.closest('.form-group');
+    const errorMessage = formGroup.querySelector('.error-message');
+    
+    if (!input.value.trim()) {
+        setInputError(formGroup, errorMessage, message);
+        return false;
+    } else {
+        clearInputError(formGroup, errorMessage);
+        return true;
+    }
+}
+
+function setInputError(formGroup, errorElement, message) {
+    formGroup.classList.add('error');
+    
+    if (!errorElement) {
+        const newErrorElement = document.createElement('div');
+        newErrorElement.className = 'error-message';
+        newErrorElement.textContent = message;
+        formGroup.appendChild(newErrorElement);
+    } else {
+        errorElement.textContent = message;
+    }
+}
+
+function clearInputError(formGroup, errorElement) {
+    formGroup.classList.remove('error');
+    if (errorElement) {
+        errorElement.textContent = '';
+    }
+}
+
+function showFormSuccess() {
+    // Create success notification
+    const notification = document.createElement('div');
+    notification.className = 'form-notification success';
+    notification.innerHTML = '<i class="fas fa-check-circle"></i> Your message has been sent successfully!';
+    
+    // Add to the page
+    document.body.appendChild(notification);
+    
+    // Show with animation
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Remove after delay
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 4000);
+}
+
+// Add hover effects to skill badges
+function initSkillBadges() {
+    const skillBadges = document.querySelectorAll('.skill-badge');
+    
+    skillBadges.forEach(badge => {
+        badge.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+        });
+        
+        badge.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// Initialize all modern features
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    
+    // Initialize new modern features
+    initSkillMeters();
+    setupContactForm();
+    initSkillBadges();
+});
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {
@@ -606,4 +685,43 @@ document.addEventListener('DOMContentLoaded', function() {
     preloadBlogImages();
     initBlog();
     initCertificates();
-}); 
+});
+
+// Add this CSS for form notifications
+document.head.insertAdjacentHTML('beforeend', `
+<style>
+.form-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.form-notification.success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.form-notification.error {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.form-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.form-notification i {
+    font-size: 1.2rem;
+}
+</style>
+`); 
