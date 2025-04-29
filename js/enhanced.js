@@ -398,12 +398,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 navbar.classList.remove('scrolled');
             }
             
-            // Hide on scroll down, show on scroll up
-            if (scrollTop > lastScrollTop && scrollTop > 300) {
-                navbar.style.transform = 'translateY(-100%)';
-            } else {
-                navbar.style.transform = 'translateY(0)';
-            }
+            // Always keep navbar visible (removed hiding behavior)
+            navbar.style.transform = 'translateY(0)';
             
             lastScrollTop = scrollTop;
         });

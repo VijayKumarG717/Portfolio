@@ -99,12 +99,8 @@ function initNavbar() {
             navbar.classList.remove('scrolled');
         }
         
-        // Hide on scroll down, show on scroll up
-        if (scrollTop > lastScrollTop && scrollTop > 300) {
-            navbar.style.top = '-80px';
-        } else {
-            navbar.style.top = '0';
-        }
+        // Always keep navbar visible (removed hiding behavior)
+        navbar.style.top = '0';
         
         lastScrollTop = scrollTop;
         
