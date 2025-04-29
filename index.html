@@ -6,19 +6,36 @@
     <title>Vijay Kumar G - Portfolio</title>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="./css/simple.css">
+    <link rel="stylesheet" type="text/css" href="./css/enhanced.css">
     <!-- External CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loading-animation"></div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <header>
-        <nav id="navbar">
+        <nav id="navbar" class="modern-navbar">
             <div class="container">
                 <div class="logo">
                     <a href="#home">VK</a>
                 </div>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
@@ -37,21 +54,22 @@
     <main>
         <!-- Hero Section -->
         <section id="home" class="hero">
+            <div class="animated-bg"></div>
             <div class="container">
-                <div class="hero-content">
-                    <h1>Hi, I'm <span class="highlight">Vijay Kumar G</span></h1>
-                    <p>Electronics & Communication Engineer | AI Enthusiast</p>
-                    <div>
+                <div class="hero-content" data-aos="fade-up">
+                    <h1 class="text-animate">Hi, I'm <span class="highlight">Vijay Kumar G</span></h1>
+                    <p class="text-animate">Electronics & Communication Engineer | AI Enthusiast</p>
+                    <div class="location text-animate">
                         <i class="fas fa-map-marker-alt"></i> Vijayawada, Andhra Pradesh
                     </div>
-                    <div>
-                        I specialize in Python Development, Computer Vision, AI/ML Solutions
+                    <div class="text-animate">
+                        I specialize in <span id="typed-text"></span>
                     </div>
-                    <div style="margin-top: 20px;">
-                        <a href="#contact" class="btn primary-btn">
+                    <div class="cta-buttons" style="margin-top: 20px;">
+                        <a href="#contact" class="interactive-btn">
                             <span>Get In Touch</span>
                         </a>
-                        <a href="#projects" class="btn secondary-btn">
+                        <a href="#projects" class="interactive-btn">
                             <span>View Projects</span>
                         </a>
                     </div>
@@ -62,14 +80,14 @@
         <!-- About Section -->
         <section id="about">
             <div class="container">
-                <h2 class="section-title">About Me</h2>
-                <div>
-                    <p>I'm an enthusiastic ECE student passionate about problem-solving, technology, and continuous learning. With hands-on experience in <strong>Python, C, Java (OOP)</strong> and a strong foundation in <strong>Azure</strong> cloud services, I enjoy creating smart, efficient solutions to real-world problems.</p>
-                    <p>I'm especially interested in the intersection of AI, computer vision, and data analytics.</p>
+                <h2 class="section-title" data-aos="fade-up">About Me</h2>
+                <div class="modern-card" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-animate">I'm an enthusiastic ECE student passionate about problem-solving, technology, and continuous learning. With hands-on experience in <strong>Python, C, Java (OOP)</strong> and a strong foundation in <strong>Azure</strong> cloud services, I enjoy creating smart, efficient solutions to real-world problems.</p>
+                    <p class="text-animate">I'm especially interested in the intersection of AI, computer vision, and data analytics.</p>
                     
-                    <div>
+                    <div class="education glass-card" data-aos="fade-up" data-aos-delay="200">
                         <h3><i class="fas fa-graduation-cap"></i> Education</h3>
-                        <div>
+                        <div class="education-item">
                             <h4>B.Tech in Electronics and Communication Engineering</h4>
                             <p>KL University, 2024</p>
                         </div>
@@ -81,9 +99,9 @@
         <!-- Skills Section -->
         <section id="skills">
             <div class="container">
-                <h2 class="section-title">My Skills</h2>
-                <div>
-                    <div>
+                <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+                <div class="modern-grid">
+                    <div class="modern-card skill-category-languages" data-aos="fade-up" data-aos-delay="100">
                         <h3>Languages</h3>
                         <div class="skill-items">
                             <div class="skill-item">
@@ -124,7 +142,7 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 40px;">
+                    <div class="modern-card skill-category-libraries" data-aos="fade-up" data-aos-delay="200">
                         <h3>Libraries & Tools</h3>
                         <div class="skill-items">
                             <div class="skill-item">
@@ -165,7 +183,7 @@
                         </div>
                     </div>
                     
-                    <div style="margin-top: 40px;">
+                    <div class="modern-card skill-category-data" data-aos="fade-up" data-aos-delay="300">
                         <h3>Data & Cloud</h3>
                         <div class="skill-items">
                             <div class="skill-item">
@@ -196,13 +214,6 @@
                                 </div>
                                 <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
                             </div>
-                            <div class="skill-item">
-                                <div class="skill-info">
-                                    <span>Azure AI & Data</span>
-                                    <span class="percentage">75%</span>
-                                </div>
-                                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -212,44 +223,73 @@
         <!-- Projects Section -->
         <section id="projects">
             <div class="container">
-                <h2 class="section-title">My Projects</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div>
-                            <i class="fas fa-hand-paper"></i>
+                <h2 class="section-title" data-aos="fade-up">Projects</h2>
+                
+                <!-- Project Filter Buttons -->
+                <div class="filter-buttons" data-aos="fade-up" data-aos-delay="100">
+                    <button class="filter-btn interactive-btn active" data-filter="all"><span>All</span></button>
+                    <button class="filter-btn interactive-btn" data-filter="python"><span>Python</span></button>
+                    <button class="filter-btn interactive-btn" data-filter="web"><span>Web</span></button>
+                    <button class="filter-btn interactive-btn" data-filter="data"><span>Data</span></button>
+                </div>
+                
+                <div class="modern-grid" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Project 1 -->
+                    <div class="project-card python tilt-effect">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400/4361ee/ffffff" alt="Hand Gesture Tracking">
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3>Hand Gesture Tracking and Replication</h3>
-                            <p>Real-time hand gesture detection system using OpenCV. Engineered vision algorithms for gesture recognition to enable interactive applications.</p>
-                            <div>
+                        <div class="project-content">
+                            <h3>Hand Gesture Tracking</h3>
+                            <p>Built a hand gesture tracking and replication system using OpenCV that accurately detects and interprets hand movements in real-time.</p>
+                            <div class="project-tags">
                                 <span>Python</span>
                                 <span>OpenCV</span>
                                 <span>Computer Vision</span>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div>
-                            <i class="fas fa-video"></i>
+                    
+                    <!-- Project 2 -->
+                    <div class="project-card python tilt-effect">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400/3a0ca3/ffffff" alt="Smart CCTV">
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3>Smart CCTV using Tkinter and OpenCV</h3>
-                            <p>Developed a motion-detection and facial recognition-based CCTV app. Delivered a user-friendly GUI with real-time surveillance capabilities.</p>
-                            <div>
+                        <div class="project-content">
+                            <h3>Smart CCTV Application</h3>
+                            <p>Developed a smart CCTV application using Tkinter and OpenCV that includes motion detection, recording capabilities, and email alerts.</p>
+                            <div class="project-tags">
                                 <span>Python</span>
                                 <span>Tkinter</span>
                                 <span>OpenCV</span>
                             </div>
                         </div>
                     </div>
-                    <div class="project-card">
-                        <div>
-                            <i class="fas fa-shopping-cart"></i>
+                    
+                    <!-- Project 3 -->
+                    <div class="project-card web tilt-effect">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/600x400/f72585/ffffff" alt="VortexCart">
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3>eCommerce Website (VortexCart)</h3>
-                            <p>Designed and developed a responsive eCommerce website from scratch using HTML, CSS, and JavaScript. Implemented features such as dynamic product listings, interactive cart functionality, and a clean, modern UI.</p>
-                            <div>
+                        <div class="project-content">
+                            <h3>VortexCart eCommerce</h3>
+                            <p>Created a responsive eCommerce website with shopping cart functionality, product filtering, and user authentication features.</p>
+                            <div class="project-tags">
                                 <span>HTML</span>
                                 <span>CSS</span>
                                 <span>JavaScript</span>
@@ -263,27 +303,21 @@
         <!-- Experience Section -->
         <section id="experience">
             <div class="container">
-                <h2 class="section-title">Experience</h2>
-                <div>
-                    <div style="margin-bottom: 40px;">
-                        <h3>Data Analytics Virtual Internship</h3>
-                        <p style="font-weight: 500; color: #4f46e5;">AICTE, India</p>
-                        <p style="font-style: italic; margin-bottom: 10px;">May - July 2023</p>
-                        <p>Worked on data analytics projects utilizing Python, Pandas, and visualization tools to extract insights from complex datasets.</p>
-                        <div style="margin-top: 10px;">
-                            <span style="display: inline-block; background-color: #e2e8f0; padding: 5px 10px; border-radius: 5px; margin-right: 10px; margin-bottom: 5px;">Data Analytics</span>
-                            <span style="display: inline-block; background-color: #e2e8f0; padding: 5px 10px; border-radius: 5px; margin-right: 10px; margin-bottom: 5px;">Python</span>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3>AI & ML Internship</h3>
-                        <p style="font-weight: 500; color: #4f46e5;">Tessolve, India</p>
-                        <p style="font-style: italic; margin-bottom: 10px;">May - June 2022</p>
-                        <p>Contributed to AI and ML projects, focusing on implementation of computer vision algorithms and development of practical applications.</p>
-                        <div style="margin-top: 10px;">
-                            <span style="display: inline-block; background-color: #e2e8f0; padding: 5px 10px; border-radius: 5px; margin-right: 10px; margin-bottom: 5px;">AI/ML</span>
-                            <span style="display: inline-block; background-color: #e2e8f0; padding: 5px 10px; border-radius: 5px; margin-right: 10px; margin-bottom: 5px;">Computer Vision</span>
+                <h2 class="section-title" data-aos="fade-up">Experience</h2>
+                
+                <div class="timeline" data-aos="fade-up" data-aos-delay="100">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content glass-card">
+                            <div class="timeline-date">May - July 2023</div>
+                            <h3>Data Analytics Virtual Internship</h3>
+                            <div class="company">AICTE, India</div>
+                            <p class="description">Worked on data analytics projects using Python and Pandas, processed large datasets, and created visualizations to derive insights.</p>
+                            <div class="timeline-tags">
+                                <span>Python</span>
+                                <span>Pandas</span>
+                                <span>Data Analysis</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -293,25 +327,71 @@
         <!-- Contact Section -->
         <section id="contact">
             <div class="container">
-                <h2 class="section-title">Let's Connect</h2>
-                <div>
-                    <div>
-                        <p>I'm always open to discussing projects, internships, or collaboration opportunities!</p>
-                        
-                        <div style="margin: 20px 0;">
-                            <div style="margin-bottom: 10px;">
+                <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+                
+                <div class="modern-grid" data-aos="fade-up" data-aos-delay="100">
+                    <div class="modern-card">
+                        <div class="contact-details">
+                            <div class="contact-item">
                                 <i class="fas fa-envelope"></i>
-                                <a href="mailto:viaykumar160902@gmail.com">viaykumar160902@gmail.com</a>
+                                <div>
+                                    <h4>Email</h4>
+                                    <a href="mailto:vijaykumar@example.com">vijaykumar@example.com</a>
+                                </div>
                             </div>
-                            <div style="margin-bottom: 10px;">
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <a href="tel:+910123456789">+91 0123 456 789</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Location</h4>
+                                    <p>Vijayawada, Andhra Pradesh, India</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
                                 <i class="fab fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank">LinkedIn Profile</a>
-                            </div>
-                            <div style="margin-bottom: 10px;">
-                                <i class="fab fa-github"></i>
-                                <a href="#" target="_blank">GitHub Profile</a>
+                                <div>
+                                    <h4>LinkedIn</h4>
+                                    <a href="https://linkedin.com/in/vijaykumarg" target="_blank">linkedin.com/in/vijaykumarg</a>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <div class="modern-card">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" placeholder="Enter your name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" placeholder="Enter your email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" placeholder="Enter subject">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" placeholder="Enter your message"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="interactive-btn">
+                                <span>Send Message</span>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -320,43 +400,25 @@
 
     <footer>
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <p>&copy; 2024 Vijay Kumar G. All Rights Reserved.</p>
-                <div>
-                    <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <div class="footer-content">
+                <p>&copy; 2023 Vijay Kumar G. All Rights Reserved.</p>
+                <div class="social-links">
                     <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="mailto:viaykumar160902@gmail.com"><i class="fas fa-envelope"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-        // Mobile Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-        
-        // Animate skill bars 
-        document.addEventListener('DOMContentLoaded', function() {
-            const skillBars = document.querySelectorAll('.skill-progress');
-            
-            // First set width to 0
-            skillBars.forEach(bar => {
-                const originalWidth = bar.style.width;
-                bar.style.width = '0';
-                
-                // Then animate after a delay
-                setTimeout(() => {
-                    bar.style.width = originalWidth;
-                }, 500);
-            });
-        });
-    </script>
+    <!-- JavaScript Libraries -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="./js/script.js"></script>
+    <script src="./js/enhanced.js"></script>
+    <script src="./js/project-data.js"></script>
 </body>
 </html> 
