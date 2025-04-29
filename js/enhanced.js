@@ -46,12 +46,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function initAnimations() {
         initParticleBackground();
         initTextAnimation();
+        makeHeaderTextVisible();
         initSkillBars();
         initScrollReveal();
         initParallaxEffect();
         initTilt();
         initTyped();
         initCounters();
+    }
+
+    // Make header text immediately visible
+    function makeHeaderTextVisible() {
+        const heroTextElements = document.querySelectorAll('.hero .text-animate');
+        heroTextElements.forEach(element => {
+            element.style.opacity = '1';
+            element.style.transform = 'translateY(0)';
+        });
     }
 
     // Particle background for hero section
@@ -73,16 +83,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Animated text reveal
+    // Animated text reveal - now only for non-hero sections
     function initTextAnimation() {
-        const textElements = document.querySelectorAll('.text-animate');
-        
-        // Check if elements are already visible to prevent re-animation
-        textElements.forEach((element) => {
-            if (element.classList.contains('visible')) {
-                return;
-            }
-        });
+        const textElements = document.querySelectorAll('.reveal-animate');
         
         const observerOptions = {
             threshold: 0.1,
@@ -99,7 +102,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, observerOptions);
         
         textElements.forEach((element, index) => {
-            // Check if element is already animated
             if (!element.classList.contains('visible')) {
                 element.style.transitionDelay = `${index * 0.1}s`;
                 observer.observe(element);
@@ -197,22 +199,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Typed.js effect for dynamic text
     function initTyped() {
         if (typeof Typed !== 'undefined' && document.getElementById('typed-text')) {
-            new Typed('#typed-text', {
-                strings: [
-                    'Python Development',
-                    'Computer Vision',
-                    'AI/ML Solutions',
-                    'Data Analytics',
-                    'Web Development'
-                ],
-                typeSpeed: 60,
-                backSpeed: 30,
-                backDelay: 1500,
-                startDelay: 1000,
-                loop: true,
-                showCursor: true,
-                cursorChar: '|'
-            });
+            // Add a small delay to ensure the element is visible
+            setTimeout(() => {
+                new Typed('#typed-text', {
+                    strings: [
+                        'Python Development',
+                        'Computer Vision',
+                        'AI/ML Solutions',
+                        'Data Analytics',
+                        'Web Development'
+                    ],
+                    typeSpeed: 60,
+                    backSpeed: 30,
+                    backDelay: 1500,
+                    startDelay: 500, // Reduced from 1000
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|'
+                });
+            }, 300);
         }
     }
 
