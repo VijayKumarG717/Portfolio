@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vijay Kumar G - Portfolio</title>
+    <!-- Try multiple path formats for GitHub Pages compatibility -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Fallback CSS if external file fails to load -->
+    <style>
+        /* Critical CSS styles (minimal version to ensure basic layout works) */
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #0f172a;
+            --accent-color: #06b6d4;
+            --light-color: #f8fafc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        section { padding: 4rem 0; }
+        nav { position: fixed; width: 100%; background: #fff; padding: 1rem 0; z-index: 1000; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        a { text-decoration: none; color: var(--primary-color); }
+        .hero { min-height: 100vh; padding-top: 80px; background: #1B2735; color: white; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; border-radius: 50px; }
+        .primary-btn { background: var(--primary-color); color: white; }
+        /* Add more critical styles as needed */
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <span class="letter">V</span>
+            <span class="letter">I</span>
+            <span class="letter">J</span>
+            <span class="letter">A</span>
+            <span class="letter">Y</span>
+        </div>
+    </div>
+
+    <header>
+        <nav id="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#home">
+                        <span class="logo-text">VK</span>
+                        <span class="logo-dot"></span>
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="stars-container">
+                <div id="stars"></div>
+                <div id="stars2"></div>
+                <div id="stars3"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content" data-aos="fade-right">
+                    <h1>Hi, I'm <span class="highlight">Vijay Kumar G</span></h1>
+                    <p class="subtitle">Electronics & Communication Engineer | AI Enthusiast</p>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Vijayawada, Andhra Pradesh
+                    </div>
+                    <div class="typed-container">
+                        <span class="typed-prefix">I specialize in </span>
+                        <span id="typed-text"></span>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn primary-btn">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn secondary-btn">
+                            <span>View Projects</span>
+                            <i class="fas fa-code"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos="fade-left">
+                    <div class="profile-frame">
+                        <!-- Replace with your actual image -->
+                        <div class="profile-placeholder">
+                            <span>VK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <p>I'm an enthusiastic ECE student passionate about problem-solving, technology, and continuous learning. With hands-on experience in <strong>Python, C, Java (OOP)</strong> and a strong foundation in <strong>Azure</strong> cloud services, I enjoy creating smart, efficient solutions to real-world problems.</p>
+                        <p>I'm especially interested in the intersection of AI, computer vision, and data analytics.</p>
+                        
+                        <div class="education">
+                            <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                            <div class="education-item">
+                                <h4>B.Tech in Electronics and Communication Engineering</h4>
+                                <p>KL University, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-cards" data-aos="fade-left">
+                        <div class="card">
+                            <div class="card-icon-wrapper">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Development</h3>
+                            <p>Building responsive web applications and AI solutions</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon-wrapper">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>AI & ML</h3>
+                            <p>Creating intelligent systems with Python and OpenCV</p>
+                        </div>
+                        <div class="card">
+                            <div class="card-icon-wrapper">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>Data Analytics</h3>
+                            <p>Turning data into actionable insights</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+                <div class="skills-content">
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                        <h3>Languages</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Python</span>
+                                    <span class="percentage">90%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>C</span>
+                                    <span class="percentage">85%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Java (OOP)</span>
+                                    <span class="percentage">80%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>HTML/CSS</span>
+                                    <span class="percentage">75%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>JavaScript</span>
+                                    <span class="percentage">70%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                        <h3>Libraries & Tools</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>OpenCV</span>
+                                    <span class="percentage">85%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Pandas</span>
+                                    <span class="percentage">80%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>NumPy</span>
+                                    <span class="percentage">80%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Matplotlib</span>
+                                    <span class="percentage">75%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Tkinter</span>
+                                    <span class="percentage">70%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                        <h3>Data & Cloud</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Excel</span>
+                                    <span class="percentage">85%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Power BI</span>
+                                    <span class="percentage">75%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Tableau</span>
+                                    <span class="percentage">70%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Azure Fundamentals</span>
+                                    <span class="percentage">80%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span>Azure AI & Data</span>
+                                    <span class="percentage">75%</span>
+                                </div>
+                                <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-divider shape-divider-bottom">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card" data-aos="fade-up">
+                        <div class="project-image">
+                            <i class="fas fa-hand-paper"></i>
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Hand Gesture Tracking and Replication</h3>
+                            <p>Real-time hand gesture detection system using OpenCV. Engineered vision algorithms for gesture recognition to enable interactive applications.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>OpenCV</span>
+                                <span>Computer Vision</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn small-btn"><i class="fas fa-globe"></i><span>Live Demo</span></a>
+                                <a href="#" class="btn small-btn"><i class="fab fa-github"></i><span>Source Code</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="project-image">
+                            <i class="fas fa-video"></i>
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Smart CCTV using Tkinter and OpenCV</h3>
+                            <p>Developed a motion-detection and facial recognition-based CCTV app. Delivered a user-friendly GUI with real-time surveillance capabilities.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>Tkinter</span>
+                                <span>OpenCV</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn small-btn"><i class="fas fa-globe"></i><span>Live Demo</span></a>
+                                <a href="#" class="btn small-btn"><i class="fab fa-github"></i><span>Source Code</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="project-image">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div class="project-overlay">
+                                <div class="project-details">
+                                    <h4>View Details</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>eCommerce Website (VortexCart)</h3>
+                            <p>Designed and developed a responsive eCommerce website from scratch using HTML, CSS, and JavaScript. Implemented features such as dynamic product listings, interactive cart functionality, and a clean, modern UI.</p>
+                            <div class="project-tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="btn small-btn"><i class="fas fa-globe"></i><span>Live Demo</span></a>
+                                <a href="#" class="btn small-btn"><i class="fab fa-github"></i><span>Source Code</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">May - July 2023</div>
+                            <h3>Data Analytics Virtual Internship</h3>
+                            <p class="company">AICTE, India</p>
+                            <p class="description">Worked on data analytics projects utilizing Python, Pandas, and visualization tools to extract insights from complex datasets.</p>
+                            <div class="timeline-tags">
+                                <span>Data Analytics</span>
+                                <span>Python</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">May - June 2022</div>
+                            <h3>AI & ML Internship</h3>
+                            <p class="company">Tessolve, India</p>
+                            <p class="description">Contributed to AI and ML projects, focusing on implementation of computer vision algorithms and development of practical applications.</p>
+                            <div class="timeline-tags">
+                                <span>AI/ML</span>
+                                <span>Computer Vision</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shape-divider">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Let's Connect</h2>
+                <div class="contact-content">
+                    <div class="contact-info" data-aos="fade-right">
+                        <p>I'm always open to discussing projects, internships, or collaboration opportunities!</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:viaykumar160902@gmail.com">viaykumar160902@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-linkedin"></i>
+                                <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank">LinkedIn Profile</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fab fa-github"></i>
+                                <a href="#" target="_blank">GitHub Profile</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-map">
+                            <div class="map-placeholder">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <span>Vijayawada, Andhra Pradesh, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form" data-aos="fade-left">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn primary-btn">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Vijay Kumar G. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:viaykumar160902@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="./js/debug.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html> 
