@@ -111,15 +111,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Skill bars animation on scroll
     function initSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillBars = document.querySelectorAll('.skill-progress-fill');
         
         skillBars.forEach(bar => {
             const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
-            const width = percentage;
-            
-            // Store the target width
-            bar.setAttribute('data-width', width);
-            
             // Set initial width to 0
             bar.style.width = '0';
         });
@@ -127,8 +122,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const targetWidth = entry.target.getAttribute('data-width');
-                    entry.target.style.width = targetWidth;
+                    setTimeout(() => {
+                        const percentage = entry.target.parentElement.previousElementSibling.querySelector('.percentage').textContent;
+                        entry.target.style.width = percentage;
+                    }, 300);
                     observer.unobserve(entry.target);
                 }
             });

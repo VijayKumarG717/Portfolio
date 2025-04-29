@@ -516,7 +516,7 @@ section {
 
 .skill-bar {
     height: 10px;
-    background-color: rgba(226, 232, 240, 0.8);
+    background-color: #e2e8f0;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1.5rem;
@@ -527,8 +527,9 @@ section {
     height: 100%;
     background: var(--gradient-1);
     border-radius: 5px;
-    width: 0;
     transition: width 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 .skill-progress {
@@ -1355,7 +1356,7 @@ footer::before {
 /* Skill bars */
 .skill-bar {
     height: 10px;
-    background-color: rgba(226, 232, 240, 0.8);
+    background-color: #e2e8f0;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1.5rem;
@@ -1366,8 +1367,9 @@ footer::before {
     height: 100%;
     background: var(--gradient-1);
     border-radius: 5px;
-    width: 0;
     transition: width 1s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Enhanced form elements */

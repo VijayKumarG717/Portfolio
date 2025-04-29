@@ -199,14 +199,23 @@ function animateSkillBars() {
     
     if (!skillsSection) return;
     
+    const skillBars = skillsSection.querySelectorAll('.skill-progress-fill');
+    skillBars.forEach(bar => {
+        const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
+        // Initially set width to 0
+        bar.style.width = '0';
+    });
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const skillBars = skillsSection.querySelectorAll('.skill-progress-fill');
-                skillBars.forEach(bar => {
-                    const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
-                    bar.style.width = percentage;
-                });
+                setTimeout(() => {
+                    const skillBars = skillsSection.querySelectorAll('.skill-progress-fill');
+                    skillBars.forEach(bar => {
+                        const percentage = bar.parentElement.previousElementSibling.querySelector('.percentage').textContent;
+                        bar.style.width = percentage;
+                    });
+                }, 300);
                 observer.unobserve(entry.target);
             }
         });
