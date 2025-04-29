@@ -198,26 +198,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Typed.js effect for dynamic text
     function initTyped() {
-        if (typeof Typed !== 'undefined' && document.getElementById('typed-text')) {
-            // Add a small delay to ensure the element is visible
-            setTimeout(() => {
-                new Typed('#typed-text', {
-                    strings: [
-                        'Python Development',
-                        'Computer Vision',
-                        'AI/ML Solutions',
-                        'Data Analytics',
-                        'Web Development'
-                    ],
-                    typeSpeed: 60,
-                    backSpeed: 30,
-                    backDelay: 1500,
-                    startDelay: 500, // Reduced from 1000
-                    loop: true,
-                    showCursor: true,
-                    cursorChar: '|'
-                });
-            }, 300);
+        const typedElement = document.getElementById('typed-text');
+        
+        if (typedElement && typeof Typed !== 'undefined') {
+            // Clear any previous instances
+            if (window.typedInstance) {
+                window.typedInstance.destroy();
+            }
+            
+            // Create new instance with improved configuration
+            window.typedInstance = new Typed('#typed-text', {
+                strings: [
+                    'AI/ML Solutions',
+                    'Python Development',
+                    'Computer Vision',
+                    'Data Analytics',
+                    'Web Development'
+                ],
+                typeSpeed: 60,
+                backSpeed: 30,
+                backDelay: 1800,
+                startDelay: 500,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|',
+                autoInsertCss: true,
+                onBegin: function() {
+                    // Ensure visibility of typed text container
+                    const wrapper = document.querySelector('.typed-wrapper');
+                    if (wrapper) {
+                        wrapper.style.visibility = 'visible';
+                    }
+                }
+            });
         }
     }
 
