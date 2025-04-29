@@ -332,6 +332,13 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
+            
+            // Prevent scrolling when menu is open
+            if (navLinks.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
         
         // Close menu when clicking links
@@ -341,8 +348,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                     hamburger.classList.remove('active');
+                    document.body.style.overflow = '';
                 }
             });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
     }
 
@@ -381,9 +400,9 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Hide on scroll down, show on scroll up
             if (scrollTop > lastScrollTop && scrollTop > 300) {
-                navbar.style.top = '-80px';
+                navbar.style.transform = 'translateY(-100%)';
             } else {
-                navbar.style.top = '0';
+                navbar.style.transform = 'translateY(0)';
             }
             
             lastScrollTop = scrollTop;
