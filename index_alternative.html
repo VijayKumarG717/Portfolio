@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vijay Kumar G - Portfolio</title>
+    <!-- CSS Linking - Consolidated approach -->
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <link rel="stylesheet" type="text/css" href="./css/fix.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <!-- Fallback CSS if external file fails to load -->
+    <style>
+        /* Critical CSS styles (minimal version to ensure basic layout works) */
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #0f172a;
+            --accent-color: #06b6d4;
+            --light-color: #f8fafc;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        section { padding: 4rem 0; }
+        nav { position: fixed; width: 100%; background: #fff; padding: 1rem 0; z-index: 1000; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 2rem; }
+        a { text-decoration: none; color: var(--primary-color); }
+        .hero { min-height: 100vh; padding-top: 80px; background: #1B2735; color: white; }
+        .btn { display: inline-block; padding: 0.8rem 2rem; border-radius: 50px; }
+        .primary-btn { background: var(--primary-color); color: white; }
+    </style>
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <span class="letter">V</span>
+            <span class="letter">I</span>
+            <span class="letter">J</span>
+            <span class="letter">A</span>
+            <span class="letter">Y</span>
+        </div>
+    </div>
+
+    <header>
+        <nav id="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="#home">
+                        <span class="logo-text">VK</span>
+                        <span class="logo-dot"></span>
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="stars-container">
+                <div id="stars"></div>
+                <div id="stars2"></div>
+                <div id="stars3"></div>
+            </div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Hi, I'm <span class="highlight">Vijay Kumar G</span></h1>
+                    <p class="subtitle">Electronics & Communication Engineer | AI Enthusiast</p>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i> Vijayawada, Andhra Pradesh
+                    </div>
+                    <div class="typed-container">
+                        <span class="typed-prefix">I specialize in </span>
+                        <span id="typed-text"></span>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn primary-btn">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn secondary-btn">
+                            <span>View Projects</span>
+                            <i class="fas fa-code"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-frame">
+                        <!-- Replace with your actual image -->
+                        <div class="profile-placeholder">
+                            <span>VK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-down">
+                <span>Scroll Down</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- The rest of your sections go here (About, Skills, Projects, etc.) -->
+        <!-- ... (existing code) ... -->
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2024 Vijay Kumar G. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/vijay-kumar-3423a020b" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:viaykumar160902@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Local Scripts -->
+    <script src="./js/debug.js"></script>
+    <script>
+        // Simple script to ensure skill bars work
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate skill bars
+            setTimeout(function() {
+                const skillBars = document.querySelectorAll('.skill-progress');
+                skillBars.forEach(bar => {
+                    // Get the percentage from nearby .percentage span if it exists
+                    let targetWidth = '0%';
+                    try {
+                        const parent = bar.closest('.skill-item');
+                        if (parent) {
+                            const percentEl = parent.querySelector('.percentage');
+                            if (percentEl) {
+                                targetWidth = percentEl.textContent;
+                            }
+                        }
+                    } catch (e) {
+                        console.error('Error finding percentage:', e);
+                    }
+                    
+                    // Set the width
+                    if (targetWidth && targetWidth !== '0%') {
+                        bar.style.width = targetWidth;
+                    }
+                });
+            }, 1000);
+
+            // Mobile menu
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+            }
+            
+            // Initialize AOS
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    easing: 'ease-in-out',
+                    once: true
+                });
+            }
+            
+            // Initialize Typed.js
+            if (typeof Typed !== 'undefined' && document.getElementById('typed-text')) {
+                new Typed('#typed-text', {
+                    strings: [
+                        'Python Development',
+                        'Computer Vision',
+                        'AI/ML Solutions',
+                        'Data Analytics',
+                        'Web Development'
+                    ],
+                    typeSpeed: 60,
+                    backSpeed: 30,
+                    backDelay: 1500,
+                    startDelay: 1000,
+                    loop: true,
+                    showCursor: true,
+                    cursorChar: '|'
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

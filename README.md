@@ -4,7 +4,7 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 
 ## 🚀 Live Demo
 
-[Insert your deployed site URL here]
+[https://yourusername.github.io/Portfolio/](https://yourusername.github.io/Portfolio/)
 
 ## 📋 Features
 
@@ -21,6 +21,8 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 - JavaScript (ES6+)
 - Font Awesome for icons
 - Google Fonts
+- AOS (Animate On Scroll) library
+- Typed.js for text animations
 
 ## 🛠️ Setup & Deployment
 
@@ -28,31 +30,43 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 
 1. Clone this repository:
    ```
-   git clone https://github.com/your-username/portfolio.git
+   git clone https://github.com/your-username/Portfolio.git
    ```
 
 2. Navigate to the project directory:
    ```
-   cd portfolio
+   cd Portfolio
    ```
 
 3. Open the `index.html` file in your browser or use a local development server like Live Server in VSCode.
 
-### Deployment Options
+### GitHub Pages Deployment
 
-#### GitHub Pages
+1. Create a GitHub repository named `Portfolio`
+2. Push your code to the repository:
+   ```
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/your-username/Portfolio.git
+   git push -u origin main
+   ```
 
-1. Push your code to a GitHub repository
-2. Go to repository Settings > Pages
-3. Select the main branch as the source
-4. Your site will be published at `https://your-username.github.io/repository-name/`
+3. Go to repository Settings > Pages
+4. Under "Source", select the "main" branch
+5. Click "Save"
+6. Your site will be published at `https://your-username.github.io/Portfolio/`
 
-#### Netlify
+### Troubleshooting GitHub Pages
 
-1. Create an account on [Netlify](https://www.netlify.com/)
-2. Drag and drop your project folder to the Netlify dashboard
-3. Your site will be deployed with a Netlify subdomain
-4. You can configure a custom domain in the site settings
+If your site doesn't load properly on GitHub Pages:
+
+1. **Check the CSS/JS paths**: Ensure all paths in your HTML file use relative paths with `./` prefix (like `./css/main.css` instead of `/css/main.css`)
+2. **Verify .nojekyll file**: Make sure the `.nojekyll` file exists in your repository root to disable Jekyll processing
+3. **Check browser console**: Open your site, press F12 to open DevTools, and check the Console tab for errors
+4. **Clear cache**: Try clearing your browser cache or open in Incognito/Private mode
+5. **Wait for deployment**: GitHub Pages can take a few minutes to update after pushing changes
 
 ## 📱 Responsive Design
 
@@ -65,7 +79,7 @@ The portfolio is fully responsive and works well on:
 
 Feel free to customize the portfolio to match your preferences:
 
-- **Colors:** Edit the CSS variables in the `:root` selector in `css/styles.css`
+- **Colors:** Edit the CSS variables in the `:root` selector in `css/main.css`
 - **Content:** Update your information in the `index.html` file
 - **Images:** Replace the placeholder with your actual profile image
 - **Projects:** Add or modify project cards in the Projects section
@@ -87,6 +101,8 @@ Feel free to customize the portfolio to match your preferences:
 
 - Font Awesome for the icons
 - Google Fonts for the typography
+- AOS library for scroll animations
+- Typed.js for the typing effect
 - Inspiration from modern portfolio designs
 
 Feel free to star this repository if you find it useful! 

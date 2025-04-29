@@ -183,7 +183,17 @@ document.querySelectorAll('.project-card').forEach(card => {
 // Animated skill bars on scroll
 function animateSkillBars() {
     const skillBars = document.querySelectorAll('.skill-progress');
+    
+    // Store the original widths before setting to 0
     skillBars.forEach(bar => {
+        // Get the percentage from nearby .percentage span
+        const percentageEl = bar.parentElement.previousElementSibling.querySelector('.percentage');
+        const width = percentageEl ? percentageEl.textContent : bar.style.width || '0%';
+        
+        // Store the desired width as a data attribute
+        bar.setAttribute('data-width', width);
+        
+        // Start with zero width
         bar.style.width = '0';
     });
     
@@ -192,17 +202,17 @@ function animateSkillBars() {
             if (entry.isIntersecting) {
                 const bar = entry.target;
                 const width = bar.getAttribute('data-width');
+                
+                // Animate to the desired width
                 setTimeout(() => {
                     bar.style.width = width;
                 }, 200);
             }
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.2 });
     
+    // Observe all skill progress bars
     skillBars.forEach(bar => {
-        const width = bar.style.width;
-        bar.style.width = '0';
-        bar.setAttribute('data-width', width);
         observer.observe(bar);
     });
 }

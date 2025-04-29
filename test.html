@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Test Page</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        body {
+            padding: 50px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        h1 {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-section">
+            <h1>CSS Loading Test</h1>
+            <p>If you can see this page with styled content, basic HTML/CSS is working.</p>
+            <p>The text below should be styled using variables from main.css:</p>
+            <div class="skill-item">
+                <div class="skill-info">
+                    <span>Test Skill</span>
+                    <span class="percentage">85%</span>
+                </div>
+                <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <button class="btn primary-btn">Primary Button</button>
+            <button class="btn secondary-btn">Secondary Button</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>Console Information</h2>
+            <p>Please check your browser console (F12) for more information about CSS loading status.</p>
+        </div>
+        
+        <div>
+            <a href="index.html">Back to Main Portfolio</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if CSS is loaded
+            const styles = document.styleSheets;
+            let cssLoaded = false;
+            
+            console.log('Total stylesheets: ' + styles.length);
+            
+            for (let i = 0; i < styles.length; i++) {
+                try {
+                    if (styles[i].href && styles[i].href.includes('main.css')) {
+                        cssLoaded = true;
+                        console.log('Main CSS loaded: ' + styles[i].href);
+                        
+                        // Check if CSS variables are accessible
+                        const testEl = document.createElement('div');
+                        testEl.style.display = 'none';
+                        document.body.appendChild(testEl);
+                        
+                        const primaryColor = getComputedStyle(testEl).getPropertyValue('--primary-color');
+                        console.log('CSS Variable test: --primary-color is ' + primaryColor);
+                        
+                        document.body.removeChild(testEl);
+                        break;
+                    }
+                } catch (e) {
+                    console.log('Could not access stylesheet:', e);
+                }
+            }
+            
+            if (!cssLoaded) {
+                console.error('Main CSS file not loaded!');
+                document.body.innerHTML += '<div style="background-color: #f56565; color: white; padding: 15px; margin-top: 20px; border-radius: 5px;"><strong>Error:</strong> main.css file could not be loaded.</div>';
+            }
+        });
+    </script>
+</body>
+</html> 
