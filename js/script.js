@@ -995,4 +995,191 @@ document.addEventListener('DOMContentLoaded', function() {
             skill.style.width = originalWidth;
         }, 500);
     });
+});
+
+// Enhanced Skills Section 3D Effects and Interactivity
+document.addEventListener('DOMContentLoaded', function() {
+    // Create floating particles in the skills section
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+        // Add particle container if not already present
+        if (!document.querySelector('.skill-particles-container')) {
+            const particlesContainer = document.createElement('div');
+            particlesContainer.className = 'skill-particles-container';
+            particlesContainer.style.position = 'absolute';
+            particlesContainer.style.top = '0';
+            particlesContainer.style.left = '0';
+            particlesContainer.style.width = '100%';
+            particlesContainer.style.height = '100%';
+            particlesContainer.style.overflow = 'hidden';
+            particlesContainer.style.pointerEvents = 'none';
+            particlesContainer.style.zIndex = '0';
+            skillsSection.insertBefore(particlesContainer, skillsSection.firstChild);
+            
+            // Create particles
+            const colors = ['rgba(79, 70, 229, 0.3)', 'rgba(6, 182, 212, 0.3)', 'rgba(147, 51, 234, 0.3)'];
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'skill-particle';
+                particle.style.width = `${Math.random() * 10 + 3}px`;
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.position = 'absolute';
+                particle.style.borderRadius = '50%';
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.opacity = `${Math.random() * 0.5 + 0.1}`;
+                particle.style.animation = `float ${Math.random() * 15 + 10}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // 3D mouse move effect on skill cards
+        const skillCards = document.querySelectorAll('.skill-card');
+        
+        skillCards.forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const cardRect = this.getBoundingClientRect();
+                const cardCenterX = cardRect.left + cardRect.width / 2;
+                const cardCenterY = cardRect.top + cardRect.height / 2;
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+                
+                // Calculate the tilt angle based on mouse position
+                const angleX = (mouseY - cardCenterY) / (cardRect.height / 2) * -8;
+                const angleY = (mouseX - cardCenterX) / (cardRect.width / 2) * 8;
+                
+                // Apply 3D transform
+                this.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                // Add glow effect based on mouse position
+                const percentX = (mouseX - cardRect.left) / cardRect.width * 100;
+                const percentY = (mouseY - cardRect.top) / cardRect.height * 100;
+                
+                // Create or update radial gradient for glow effect
+                this.style.background = `radial-gradient(circle at ${percentX}% ${percentY}%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 40%, rgba(255, 255, 255, 0.01) 100%)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                // Reset transform and background when mouse leaves
+                this.style.transform = '';
+                this.style.background = '';
+                
+                // Add smooth transition out
+                this.style.transition = 'transform 0.5s ease, background 0.5s ease';
+                setTimeout(() => {
+                    this.style.transition = '';
+                }, 500);
+            });
+            
+            // Add click effect with ripple
+            card.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.className = 'skill-ripple';
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 2;
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = `${size}px`;
+                ripple.style.height = `${size}px`;
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple-effect 0.6s linear';
+                ripple.style.pointerEvents = 'none';
+                
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+        
+        // Add CSS for ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple-effect {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes float {
+                0%, 100% {
+                    transform: translateY(0) translateX(0);
+                }
+                25% {
+                    transform: translateY(-30px) translateX(15px);
+                }
+                50% {
+                    transform: translateY(0) translateX(30px);
+                }
+                75% {
+                    transform: translateY(30px) translateX(15px);
+                }
+            }
+            
+            .two-column-skills {
+                position: relative;
+                z-index: 1;
+            }
+            
+            .skill-card {
+                position: relative;
+                overflow: hidden;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Add hover effect to skill category headings
+        const categoryHeadings = document.querySelectorAll('.skills-category h3');
+        categoryHeadings.forEach(heading => {
+            heading.style.transition = 'transform 0.3s ease, color 0.3s ease';
+            
+            heading.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+                this.style.color = 'var(--accent-color)';
+            });
+            
+            heading.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+                this.style.color = '';
+            });
+        });
+        
+        // Add parallax effect to the skills section
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.pageYOffset;
+            const skillsRect = skillsSection.getBoundingClientRect();
+            
+            if (skillsRect.top < window.innerHeight && skillsRect.bottom > 0) {
+                const particles = document.querySelectorAll('.skill-particle');
+                particles.forEach(particle => {
+                    const speed = Math.random() * 0.2 + 0.1;
+                    const yOffset = scrollPosition * speed;
+                    particle.style.transform = `translateY(${yOffset}px)`;
+                });
+                
+                // Parallax effect on skill categories
+                const categories = document.querySelectorAll('.skills-category');
+                categories.forEach((category, index) => {
+                    const direction = index % 2 === 0 ? 1 : -1;
+                    const parallaxSpeed = 0.1;
+                    category.style.transform = `translateY(${scrollPosition * parallaxSpeed * direction}px)`;
+                });
+            }
+        });
+    }
 }); 
