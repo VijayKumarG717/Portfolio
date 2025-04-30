@@ -1182,4 +1182,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+});
+
+// Clean Skills Section Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const skillItems = document.querySelectorAll('.skill-item');
+    
+    // Create an intersection observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a staggered delay for each skill item
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 50);
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Set initial state for animation
+    skillItems.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(10px)';
+        item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        observer.observe(item);
+    });
+    
+    // Add hover effect to column headings
+    const columnHeadings = document.querySelectorAll('.skills-column h3');
+    columnHeadings.forEach(heading => {
+        heading.style.transition = 'color 0.3s ease';
+        
+        heading.addEventListener('mouseenter', function() {
+            this.style.color = 'var(--accent-color)';
+        });
+        
+        heading.addEventListener('mouseleave', function() {
+            this.style.color = 'var(--primary-color)';
+        });
+    });
 }); 
