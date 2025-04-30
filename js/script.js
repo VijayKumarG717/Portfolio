@@ -43,6 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavbar();
     createStars();
     initSkillsAnimation();
+    createSkillParticles();
+    initSkillsInteractivity();
 });
 
 // Initialize Navbar and Mobile Menu
@@ -731,8 +733,8 @@ function initSkillsAnimation() {
                 // Add a staggered delay based on the item's index
                 setTimeout(() => {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, index * 50);
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }, index * 100);
                 
                 observer.unobserve(entry.target);
             }
@@ -742,9 +744,19 @@ function initSkillsAnimation() {
     // Set initial state for animation
     skillCards.forEach(card => {
         card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        card.style.transform = 'translateY(30px) scale(0.9)';
+        card.style.transition = 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)';
         observer.observe(card);
+    });
+    
+    // Add skill level indicator animation
+    const indicators = document.querySelectorAll('.skill-level-indicator');
+    indicators.forEach(indicator => {
+        indicator.style.transform = 'scale(0)';
+        indicator.style.opacity = '0';
+        
+        // Add transition
+        indicator.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease';
     });
     
     // Add custom hover effects for skill icons
@@ -752,11 +764,188 @@ function initSkillsAnimation() {
         card.addEventListener('mouseenter', function() {
             const icon = this.querySelector('.skill-icon i');
             icon.classList.add('animated');
+            
+            // Animate skill level indicator
+            const indicator = this.querySelector('.skill-level-indicator');
+            if (indicator) {
+                indicator.style.transform = 'scale(1)';
+                indicator.style.opacity = '1';
+            }
         });
         
         card.addEventListener('mouseleave', function() {
             const icon = this.querySelector('.skill-icon i');
             icon.classList.remove('animated');
+            
+            // Hide skill level indicator
+            const indicator = this.querySelector('.skill-level-indicator');
+            if (indicator) {
+                indicator.style.transform = 'scale(0)';
+                indicator.style.opacity = '0';
+            }
         });
     });
+}
+
+// Add interactive effects to skills section
+function initSkillsInteractivity() {
+    const skillCards = document.querySelectorAll('.skill-item-card');
+    const skillsSection = document.querySelector('.skills-section-wrapper');
+    
+    if (!skillsSection) return;
+    
+    // Mouse move effect for each skill card (3D hover effect)
+    skillCards.forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top; // y position within the element
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const deltaX = (x - centerX) / 10;
+            const deltaY = (y - centerY) / 10;
+            
+            // Apply rotation based on mouse position
+            this.style.transform = `perspective(1000px) rotateX(${-deltaY}deg) rotateY(${deltaX}deg) scale(1.05)`;
+            
+            // Update the position of the glow effect
+            const glow = this.querySelector('.skill-glow');
+            if (glow) {
+                glow.style.opacity = '0.7';
+                glow.style.left = `${x - 50}px`;
+                glow.style.top = `${y - 50}px`;
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            // Reset card position and remove glow on mouse leave
+            this.style.transform = '';
+            
+            const glow = this.querySelector('.skill-glow');
+            if (glow) {
+                glow.style.opacity = '0';
+            }
+        });
+        
+        // Add click effect
+        card.addEventListener('click', function() {
+            // Add a quick pulse effect on click
+            this.classList.add('clicked');
+            setTimeout(() => {
+                this.classList.remove('clicked');
+            }, 500);
+            
+            // Display skill name
+            const skillName = this.getAttribute('data-skill');
+            showSkillToast(skillName);
+        });
+    });
+    
+    // Add parallax effect to entire skills section
+    skillsSection.addEventListener('mousemove', function(e) {
+        const columns = document.querySelectorAll('.skills-column');
+        const speed = 0.05;
+        
+        const x = (window.innerWidth / 2 - e.pageX) * speed;
+        const y = (window.innerHeight / 2 - e.pageY) * speed;
+        
+        columns.forEach((column, index) => {
+            // Apply different speeds to each column for depth effect
+            const columnSpeed = index === 0 ? speed * 1.5 : speed;
+            column.style.transform = `perspective(1000px) rotateY(${index === 0 ? 5 : -5}deg) translateX(${index === 0 ? x : -x}px) translateY(${y}px)`;
+        });
+    });
+    
+    skillsSection.addEventListener('mouseleave', function() {
+        const columns = document.querySelectorAll('.skills-column');
+        
+        columns.forEach((column, index) => {
+            column.style.transform = `perspective(1000px) rotateY(${index === 0 ? 5 : -5}deg)`;
+        });
+    });
+}
+
+// Create floating particles for the skills section
+function createSkillParticles() {
+    const container = document.getElementById('skills-particles');
+    if (!container) return;
+    
+    const colors = ['blue', 'purple', 'cyan', 'pink'];
+    const particleCount = 40;
+    
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = `particle ${colors[Math.floor(Math.random() * colors.length)]}`;
+        
+        // Random position
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        particle.style.left = `${posX}%`;
+        particle.style.top = `${posY}%`;
+        
+        // Random size
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Random animation properties
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+        
+        container.appendChild(particle);
+    }
+    
+    // Animate particles on scroll
+    window.addEventListener('scroll', function() {
+        const skillsSection = document.getElementById('skills');
+        if (!skillsSection) return;
+        
+        const rect = skillsSection.getBoundingClientRect();
+        const particles = document.querySelectorAll('.particle');
+        
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            const scrollFactor = 1 - Math.abs(rect.top) / window.innerHeight;
+            
+            particles.forEach(particle => {
+                const baseX = parseFloat(particle.style.left);
+                const offset = (Math.random() - 0.5) * 10 * scrollFactor;
+                particle.style.transform = `translateX(${offset}px)`;
+                particle.style.opacity = 0.3 + (scrollFactor * 0.7);
+            });
+        }
+    });
+}
+
+// Add a toast notification for skill clicks
+function showSkillToast(skillName) {
+    // Remove any existing toasts
+    const existingToast = document.querySelector('.skill-toast');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = 'skill-toast';
+    toast.innerHTML = `<span>${skillName}</span>`;
+    
+    // Add to body
+    document.body.appendChild(toast);
+    
+    // Show with animation
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 10);
+    
+    // Auto-remove after delay
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 2000);
 } 
