@@ -1,28 +1,20 @@
 @echo off
-echo ===== Portfolio Viewer =====
-echo.
-echo This script will open all versions of your portfolio for testing
-echo.
+echo ===== Portfolio Local Viewer =====
 
-echo Opening regular portfolio...
-start "" "index.html"
+REM Check if node is installed
+where node >nul 2>nul
+if %ERRORLEVEL% NEQ 0 (
+    echo Error: Node.js is not installed or not in your PATH.
+    echo Please install Node.js from https://nodejs.org/
+    pause
+    exit /b 1
+)
 
-echo Opening alternative portfolio...
-start "" "index_alternative.html"
+echo Starting local server...
+echo Your portfolio will be available at: http://localhost:3000/
+echo Press Ctrl+C to stop the server
 
-echo Opening simplified portfolio...
-start "" "simple.html"
+REM Run the server
+node server.js
 
-echo Opening test page...
-start "" "test.html"
-
-echo.
-echo If any version displays correctly, you can use it for GitHub Pages.
-echo.
-echo 1. For the regular version: Keep using index.html
-echo 2. For the alternative version: Rename index_alternative.html to index.html
-echo 3. For the simplified version: Rename simple.html to index.html
-echo.
-echo After choosing which version works best, run deploy.bat to push to GitHub.
-echo.
 pause 
