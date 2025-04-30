@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all necessary functionality
     initNavbar();
     createStars();
-    animateSkillBars();
+    initSkillsAnimation();
 });
 
 // Initialize Navbar and Mobile Menu
@@ -718,4 +718,45 @@ document.head.insertAdjacentHTML('beforeend', `
     font-size: 1.2rem;
 }
 </style>
-`); 
+`);
+
+// Add animation to skills section
+function initSkillsAnimation() {
+    const skillCards = document.querySelectorAll('.skill-item-card');
+    
+    // Use Intersection Observer to animate skills when they come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a staggered delay based on the item's index
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }, index * 50);
+                
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    // Set initial state for animation
+    skillCards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(card);
+    });
+    
+    // Add custom hover effects for skill icons
+    skillCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const icon = this.querySelector('.skill-icon i');
+            icon.classList.add('animated');
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const icon = this.querySelector('.skill-icon i');
+            icon.classList.remove('animated');
+        });
+    });
+} 
