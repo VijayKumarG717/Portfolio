@@ -2557,3 +2557,37 @@ body.dark-mode .skill-bar {
 }
 
 /* Updated Skills Section - Modern Professional Design */
+
+/* Two-Column Skills Layout */
+.two-column-skills {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.two-column-skills .skills-category {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.two-column-skills .skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media (max-width: 992px) {
+    .two-column-skills {
+        flex-direction: column;
+    }
+    
+    .two-column-skills .skills-category {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Add additional space at bottom of skills section */
+#skills {
+    padding-bottom: 5rem;
+}
