@@ -1604,49 +1604,64 @@ footer::before {
 }
 
 .skill-badge-container {
-    margin-bottom: 2rem;
-}
-
-.skill-badge {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
-    color: var(--dark-color);
-}
-
-.skill-badge i {
-    font-size: 1.5rem;
-    margin-right: 15px;
-    color: var(--primary-color);
-    width: 30px;
-    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .skill-meter {
-    height: 10px;
+    height: 12px;
     background-color: rgba(0, 0, 0, 0.05);
-    border-radius: 5px;
+    border-radius: 6px;
     overflow: hidden;
     position: relative;
-    margin: 0.8rem 0;
+    margin: 1.5rem 0 0.8rem;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .skill-meter-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    border-radius: 5px;
+    border-radius: 6px;
     width: 0;
     transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.skill-meter-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0) 25%,
+        rgba(255, 255, 255, 0.15) 25%,
+        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0) 75%,
+        rgba(255, 255, 255, 0.15) 75%
+    );
+    background-size: 25px 25px;
+    animation: skillShine 1.5s linear infinite;
 }
 
 .skill-percentage {
-    position: absolute;
-    right: 0;
-    top: -25px;
-    font-size: 0.9rem;
+    position: relative;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--dark-color);
+    display: block;
+    margin-top: 0.2rem;
+}
+
+@keyframes skillShine {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 50px 0;
+    }
 }
 
 @media (max-width: 992px) {

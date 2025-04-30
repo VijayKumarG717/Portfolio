@@ -225,7 +225,10 @@ function initSkillMeters() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const percentage = entry.target.getAttribute('data-percentage');
-                entry.target.style.width = percentage;
+                // Add a slight delay for a staggered effect
+                setTimeout(() => {
+                    entry.target.style.width = percentage;
+                }, Math.random() * 300);
                 observer.unobserve(entry.target);
             }
         });
@@ -368,19 +371,10 @@ function showFormSuccess() {
     }, 4000);
 }
 
-// Add hover effects to skill badges
+// Add hover effects to skill badges (no longer needed with updated design)
 function initSkillBadges() {
-    const skillBadges = document.querySelectorAll('.skill-badge');
-    
-    skillBadges.forEach(badge => {
-        badge.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-        });
-        
-        badge.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-        });
-    });
+    // This function is no longer needed since we removed skill badges
+    // But we'll keep it empty for compatibility
 }
 
 // Initialize all modern features
