@@ -948,4 +948,51 @@ function showSkillToast(skillName) {
             toast.remove();
         }, 300);
     }, 2000);
-} 
+}
+
+// Animate skill bars when they come into view
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS for smooth animations
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+
+    // Get all skill bars
+    const skillLevels = document.querySelectorAll('.skill-level');
+    
+    // Create an intersection observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // If the skill bar is visible
+            if (entry.isIntersecting) {
+                // Add a small delay for each skill to create a cascade effect
+                setTimeout(() => {
+                    entry.target.style.width = entry.target.style.width;
+                }, 300);
+                // Unobserve the element after animating
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+
+    // Observe each skill level
+    skillLevels.forEach(skill => {
+        // Initially set width to 0
+        const originalWidth = skill.style.width;
+        skill.style.width = '0%';
+        
+        // Then observe for animation
+        observer.observe(skill);
+        
+        // Store the original width as a data attribute
+        skill.setAttribute('data-width', originalWidth);
+        
+        // Add animation delay for cascading effect
+        setTimeout(() => {
+            skill.style.width = originalWidth;
+        }, 500);
+    });
+}); 
