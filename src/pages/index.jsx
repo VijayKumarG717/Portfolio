@@ -94,7 +94,7 @@ const Header = () => {
               <li key={item}>
                 <AnimatedLink
                   href={`#${item.toLowerCase()}`}
-                  className="px-3 py-2 text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400"
+                  className="px-3 py-2 text-gray-700 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium"
                   underlineColor="indigo"
                 >
                   {item}
