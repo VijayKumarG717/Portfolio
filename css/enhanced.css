@@ -1,63 +1,248 @@
 /* Enhanced Portfolio Styling */
 :root {
-  /* Modern color scheme */
-  --primary-color: #4361ee;
-  --secondary-color: #3a0ca3;
-  --accent-color: #4cc9f0;
-  --accent-secondary: #f72585;
-  --light-color: #f8f9fa;
-  --dark-color: #212529;
-  --success-color: #2ecc71;
-  --warning-color: #f39c12;
-  --danger-color: #e74c3c;
-  --text-color: #2d3436;
-  --text-light: #f8f9fa;
+  /* Modern color scheme - Light mode */
+  --primary-color: #3b82f6;
+  --secondary-color: #4f46e5;
+  --accent-color: #0ea5e9;
+  --accent-secondary: #ec4899;
   
-  /* Light theme specific colors */
+  /* Text colors - Light mode */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-light: #f8fafc;
+  --text-accent: #3b82f6;
+  
+  /* Background colors - Light mode */
   --background-color: #ffffff;
-  --background-alt: #f8f9fa;
+  --background-alt: #f1f5f9;
   --card-bg: #ffffff;
   --section-bg: linear-gradient(to bottom, #f9fafb, #f3f4f6);
   --hero-bg: linear-gradient(135deg, #e0f2fe, #f0f9ff);
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #4361ee 0%, #4cc9f0 100%);
-  --gradient-secondary: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
-  --gradient-accent: linear-gradient(135deg, #3a0ca3 0%, #4361ee 100%);
+  /* Gradients - Light mode */
+  --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+  --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
   
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
-  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.15);
   
   /* Animation */
   --transition-fast: all 0.2s ease;
   --transition-normal: all 0.3s ease;
   --transition-slow: all 0.5s ease;
+  
+  /* Extra color variables */
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
 }
 
 /* Dark Mode Variables */
 body.dark-mode {
-  --primary-color: #4cc9f0;
-  --secondary-color: #7209b7;
-  --accent-color: #f72585;
-  --accent-secondary: #4cc9f0;
-  --text-color: #e2e8f0;
-  --text-light: #f8fafc;
+  /* Modern color scheme - Dark mode */
+  --primary-color: #60a5fa;
+  --secondary-color: #8b5cf6;
+  --accent-color: #0ea5e9;
+  --accent-secondary: #f472b6;
   
-  /* Dark theme specific colors */
+  /* Text colors - Dark mode */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-light: #f8fafc;
+  --text-accent: #60a5fa;
+  
+  /* Background colors - Dark mode */
   --background-color: #0f172a;
   --background-alt: #1e293b;
   --card-bg: #1e293b;
   --section-bg: linear-gradient(to bottom, #0f172a, #1e293b);
   --hero-bg: linear-gradient(135deg, #0f172a, #1e293b);
   
-  /* Shadows */
+  /* Gradients - Dark mode */
+  --gradient-primary: linear-gradient(135deg, #60a5fa 0%, #0ea5e9 100%);
+  --gradient-secondary: linear-gradient(135deg, #f472b6 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #60a5fa 100%);
+  
+  /* Shadows - Dark mode */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.5);
   --shadow-hover: 0 15px 30px rgba(0, 0, 0, 0.6);
+  
+  /* Extra color variables */
+  --success-color: #34d399;
+  --warning-color: #fbbf24;
+  --danger-color: #f87171;
+}
+
+/* Apply new text colors */
+body {
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+.section-title {
+  color: var(--text-primary);
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-primary);
+  border-radius: 3px;
+}
+
+/* Hero Section Text Styling */
+.hero-content h1 {
+  color: var(--text-primary);
+  font-weight: 800;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profession {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.hero-focus {
+  color: var(--text-secondary);
+}
+
+/* Highlight Styling */
+.highlight {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* Skill Tags */
+.skill-tag {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--text-accent);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  font-weight: 500;
+}
+
+body.dark-mode .skill-tag {
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--text-accent);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+/* Project Cards */
+.project-content h3 {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.project-content p {
+  color: var(--text-secondary);
+}
+
+.project-tags span {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--text-accent);
+}
+
+body.dark-mode .project-tags span {
+  background: rgba(96, 165, 250, 0.1);
+  color: var(--text-accent);
+}
+
+/* Timeline and Experience */
+.timeline-date {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.company {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* Blog Section */
+.blog-category {
+  color: var(--accent-color);
+  letter-spacing: 1px;
+}
+
+.blog-content h3 {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.blog-meta {
+  color: var(--text-muted);
+}
+
+.read-more {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Contact Section */
+.contact-details h3 {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.contact-details p {
+  color: var(--text-secondary);
+}
+
+/* Form Labels */
+.form-group label {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Navigation */
+.nav-links a {
+  color: var(--text-secondary);
+}
+
+.nav-links a:hover, 
+.nav-links a.active {
+  color: var(--primary-color);
+}
+
+body.dark-mode .nav-links a {
+  color: var(--text-secondary);
+}
+
+body.dark-mode .nav-links a:hover, 
+body.dark-mode .nav-links a.active {
+  color: var(--primary-color);
+}
+
+/* Logo Text */
+.logo-text {
+  color: var(--text-primary);
+}
+
+.logo-accent {
+  color: var(--accent-color);
 }
 
 /* Global Animations */
@@ -88,7 +273,7 @@ body.dark-mode {
   position: relative;
   overflow: hidden;
   z-index: 1;
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 .modern-card:hover {
@@ -142,25 +327,16 @@ body.dark-mode {
   margin: 0 auto;
   text-align: center;
   padding: 0 20px;
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 .hero-content h1 {
   font-size: 4rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: var(--text-color);
+  color: var(--text-primary);
   text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   line-height: 1.2;
-}
-
-.highlight {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  position: relative;
-  display: inline-block;
 }
 
 .highlight::after {
@@ -191,7 +367,7 @@ body.dark-mode {
 .hero-focus {
   font-size: 1.25rem;
   line-height: 1.6;
-  color: var(--text-color);
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -203,18 +379,6 @@ body.dark-mode {
   justify-content: center;
   gap: 12px;
   margin: 30px 0;
-}
-
-.skill-tag {
-  background: rgba(76, 201, 240, 0.15);
-  color: var(--text-color);
-  padding: 8px 16px;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(76, 201, 240, 0.3);
 }
 
 .skill-tag:hover {
@@ -637,7 +801,7 @@ body.dark-mode {
   padding: 8px 12px;
   border-radius: 8px;
   font-weight: 500;
-  color: var(--dark-color);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   transition: all 0.3s ease;
@@ -676,7 +840,7 @@ body.dark-mode .modern-navbar.scrolled {
 }
 
 body.dark-mode .logo-text {
-  color: var(--light-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .logo-accent {
@@ -684,7 +848,7 @@ body.dark-mode .logo-accent {
 }
 
 body.dark-mode .nav-links a {
-  color: var(--light-color);
+  color: var(--text-secondary);
 }
 
 body.dark-mode .nav-links a:hover {
@@ -705,7 +869,7 @@ body.dark-mode .nav-links a.active {
   width: 40px;
   height: 40px;
   border-radius: 8px;
-  background: var(--light-color);
+  background: var(--text-light);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   display: none;
   align-items: center;
@@ -724,7 +888,7 @@ body.dark-mode .nav-links a.active {
 }
 
 body.dark-mode .hamburger {
-  background: var(--dark-color);
+  background: var(--text-primary);
 }
 
 body.dark-mode .bar {
@@ -754,7 +918,7 @@ body.dark-mode .bar {
   }
   
   body.dark-mode .nav-links {
-    background: var(--dark-color);
+    background: var(--text-primary);
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
   }
   
@@ -860,17 +1024,17 @@ h2, h3, h4, p, span,
 /* Body background for dark mode */
 body {
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .section-title {
-  color: var(--text-light);
+  color: var(--text-primary);
 }
 
 body.dark-mode p,
 body.dark-mode h3,
 body.dark-mode h4 {
-  color: var(--text-color);
+  color: var(--text-secondary);
 }
 
 /* Dark mode styles for project cards */
@@ -880,22 +1044,22 @@ body.dark-mode .project-card {
 }
 
 body.dark-mode .project-content h3 {
-  color: var(--text-light);
+  color: var(--text-primary);
 }
 
 body.dark-mode .project-content p {
-  color: var(--text-color);
+  color: var(--text-secondary);
 }
 
 body.dark-mode .project-tags span {
   background: rgba(76, 201, 240, 0.15);
-  color: var(--text-light);
+  color: var(--text-primary);
 }
 
 /* Footer dark mode */
 footer {
   background-color: var(--background-alt);
-  color: var(--text-color);
+  color: var(--text-primary);
 }
 
 /* Skills section dark mode enhancement */
@@ -920,14 +1084,14 @@ body.dark-mode .project-card:hover {
 /* Enhanced skill tag colors for dark mode */
 body.dark-mode .skill-tag {
   background: rgba(76, 201, 240, 0.15);
-  color: var(--text-light);
+  color: var(--text-primary);
   border: 1px solid rgba(76, 201, 240, 0.3);
 }
 
 /* Section Backgrounds */
 section {
   background: var(--background-color);
-  color: var(--text-color);
+  color: var(--text-primary);
   transition: var(--transition-normal);
 }
 
@@ -1019,13 +1183,6 @@ section:nth-child(even) {
   margin-bottom: 20px;
 }
 
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: var(--dark-color);
-}
-
 .form-group input,
 .form-group textarea {
   width: 100%;
@@ -1036,7 +1193,7 @@ section:nth-child(even) {
   transition: var(--transition-normal);
   font-family: inherit;
   font-size: 1rem;
-  color: var(--dark-color);
+  color: var(--text-primary);
 }
 
 .form-group input:focus,
@@ -1053,14 +1210,14 @@ section:nth-child(even) {
 
 /* Dark mode form styles */
 body.dark-mode .form-group label {
-  color: var(--light-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .form-group input,
 body.dark-mode .form-group textarea {
   background-color: #384156;
   border-color: rgba(255, 255, 255, 0.1);
-  color: var(--light-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .form-group input:focus,
@@ -1148,7 +1305,7 @@ body.dark-mode .form-group textarea:focus {
 
 .blog-category {
   font-size: 0.85rem;
-  color: var(--primary-color);
+  color: var(--accent-color);
   font-weight: 600;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -1159,7 +1316,7 @@ body.dark-mode .form-group textarea:focus {
   display: flex;
   gap: 15px;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-muted);
   margin: 10px 0 15px;
 }
 
@@ -1200,7 +1357,7 @@ body.dark-mode .form-group textarea:focus {
   font-size: 1.8rem;
   text-align: center;
   margin: 40px 0 20px;
-  color: var(--dark-color);
+  color: var(--text-primary);
   position: relative;
 }
 
@@ -1229,7 +1386,7 @@ body.dark-mode .form-group textarea:focus {
 
 .certificate-card h4 {
   margin: 0;
-  color: var(--dark-color);
+  color: var(--text-primary);
 }
 
 .certificate-card i {
@@ -1241,12 +1398,12 @@ body.dark-mode .form-group textarea:focus {
 
 body.dark-mode .subsection-title,
 body.dark-mode .certificate-card h4 {
-  color: var(--light-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .blog-card {
   background: #2d3748;
-  color: var(--light-color);
+  color: var(--text-primary);
 }
 
 body.dark-mode .blog-meta {
