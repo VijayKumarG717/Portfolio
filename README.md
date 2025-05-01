@@ -1,33 +1,59 @@
-# Modern Developer Portfolio with React & Tailwind CSS
+# Vijay Kumar G - Portfolio
 
-A portfolio website featuring elegant animations that enhance user engagement without overwhelming the content. Built with React, Tailwind CSS, and Framer Motion.
+A modern, animated portfolio website built with React.js, Tailwind CSS, and Framer Motion.
 
 ## Features
 
-- **Ambient Background Animation** - Particles and optional butterflies
-- **Scroll-Based Animations** - Elements animate into view when scrolled
-- **Interactive UI Elements** - Buttons, cards, and links with hover animations
-- **Accessibility** - All animations respect `prefers-reduced-motion`
-- **Dark/Light Theme** - Automatic theme switching
+- Modern animations using Framer Motion
+- Responsive design with Tailwind CSS
+- Dark/Light mode support
+- Interactive UI elements
+- Resume download functionality
+- Contact form
 
-## Getting Started
+## Running the Portfolio
 
-1. Clone the repository
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Start the development server:
-   ```
-   npm start
-   ```
+### Quick Start (Windows)
 
-## Technology Stack
+1. Double-click on `view-portfolio.bat` in the project directory
+2. This will build the app and start the server
+3. Open your browser and navigate to http://localhost:3000
 
-- React 
+### Manual Start
+
+```bash
+# Install dependencies (if not already installed)
+npm install
+
+# Build the React app
+npm run build
+
+# Start the server
+node server.js
+```
+
+Then open your browser and navigate to http://localhost:3000
+
+## Development
+
+To run the application in development mode with hot reloading:
+
+```bash
+npm run dev
+```
+
+## Technologies Used
+
+- React.js
 - Tailwind CSS
 - Framer Motion
-- React Intersection Observer
+- Node.js
+
+## Contact
+
+- Email: vijaykumar160902@gmail.com
+- Phone: +91 9154717819
+- GitHub: [VijayKumarG717](https://github.com/VijayKumarG717)
 
 ## 🚀 Live Demo
 

@@ -1,7 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { fadeIn, zoomIn, textVariant, getReducedMotionVariants } from './animationUtils';
+import { fadeIn, zoomIn, textVariant, shouldReduceMotion } from './animationUtils';
+
+// Utility function to adapt variants for reduced motion
+const getReducedMotionVariants = (variants) => {
+  if (shouldReduceMotion()) {
+    return {
+      hidden: { opacity: 0 },
+      show: { 
+        opacity: 1,
+        transition: { duration: 0.5 }
+      }
+    };
+  }
+  return variants;
+};
 
 // Create context for animations
 const ScrollAnimationContext = createContext({

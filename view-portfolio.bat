@@ -1,6 +1,4 @@
 @echo off
-echo ===== Portfolio Local Viewer =====
-
 REM Check if node is installed
 where node >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
@@ -10,6 +8,10 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
+echo Building the portfolio application...
+call npm run build
+
+echo.
 echo Starting local server...
 echo Your portfolio will be available at: http://localhost:3000/
 echo Press Ctrl+C to stop the server
