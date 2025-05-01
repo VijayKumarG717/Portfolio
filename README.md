@@ -1,6 +1,33 @@
-# Vijay Kumar G - Personal Portfolio
+# Modern Developer Portfolio with React & Tailwind CSS
 
-A modern, responsive personal portfolio website showcasing my skills, projects, and experience.
+A portfolio website featuring elegant animations that enhance user engagement without overwhelming the content. Built with React, Tailwind CSS, and Framer Motion.
+
+## Features
+
+- **Ambient Background Animation** - Particles and optional butterflies
+- **Scroll-Based Animations** - Elements animate into view when scrolled
+- **Interactive UI Elements** - Buttons, cards, and links with hover animations
+- **Accessibility** - All animations respect `prefers-reduced-motion`
+- **Dark/Light Theme** - Automatic theme switching
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm start
+   ```
+
+## Technology Stack
+
+- React 
+- Tailwind CSS
+- Framer Motion
+- React Intersection Observer
 
 ## 🚀 Live Demo
 
@@ -13,6 +40,12 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 - **Interactive Sections:** Projects, skills, and experience presented in an engaging way
 - **Contact Form:** Easy way for visitors to get in touch
 - **Modern Tech Stack:** Built with HTML5, CSS3, and JavaScript (no frameworks)
+- **Scroll-Based Animations** - Elements gracefully animate into view as you scroll down the page
+- **Interactive UI Elements** - Buttons, cards, and links with sophisticated hover animations
+- **Accessibility-Focused** - All animations respect user preferences with `prefers-reduced-motion` support
+- **Dark/Light Theme** - Seamless theme switching with smooth transitions
+- **Mobile Responsive** - Optimized for all device sizes
+- **Performance Optimized** - Animations are carefully implemented to maintain excellent performance
 
 ## 💻 Technologies Used
 
@@ -23,6 +56,10 @@ A modern, responsive personal portfolio website showcasing my skills, projects, 
 - Google Fonts
 - AOS (Animate On Scroll) library
 - Typed.js for text animations
+- **React** - Component-based UI structure
+- **Tailwind CSS** - Utility-first styling approach
+- **Framer Motion** - Animation library for smooth transitions
+- **React Intersection Observer** - For scroll-based animations
 
 ## 🛠️ Setup & Deployment
 
@@ -105,4 +142,112 @@ Feel free to customize the portfolio to match your preferences:
 - Typed.js for the typing effect
 - Inspiration from modern portfolio designs
 
-Feel free to star this repository if you find it useful! 
+Feel free to star this repository if you find it useful!
+
+## 🧩 Animation Components
+
+The project includes several reusable animation components:
+
+### Background Animation
+- Canvas-based particle system with customizable colors and density
+- Optional butterfly animation for a unique touch
+- Toggle to enable/disable for users who prefer minimal motion
+
+### Scroll Animations
+- `<AnimateOnScroll>` - Wrapper component that animates children when scrolled into view
+- `<AnimatedText>` - Text that animates by character or word for eye-catching headlines
+- Uses Intersection Observer for performance
+
+### Interactive UI Components
+- `<AnimatedButton>` - Buttons with various hover effects (scale, glow, etc.)
+- `<AnimatedCard>` - Cards with subtle hover animations (tilt, scale, etc.)
+- `<AnimatedLink>` - Links with animated underline effects
+
+## 🎨 Color Scheme
+
+The portfolio uses a refined color palette:
+
+- **Primary**: Indigo (`#6366f1`) - Clean, professional, and modern
+- **Secondary**: Violet (`#8b5cf6`) - Adds creative flair
+- **Accent**: Blue (`#3b82f6`) - For highlights and CTAs
+- **Neutral**: Gray scale - For text and backgrounds
+- **Peach**: (`#f97316`) - For subtle accents
+
+## 🛠️ Tech Stack
+
+- **React** - Component-based UI structure
+- **Tailwind CSS** - Utility-first styling approach
+- **Framer Motion** - Animation library for smooth transitions
+- **React Intersection Observer** - For scroll-based animations
+
+## 📱 Performance Considerations
+
+All animations are designed with performance in mind:
+
+- Canvas-based background animations offer better performance than DOM animations
+- Animations are hardware-accelerated where possible (`transform`, `opacity`)
+- Reduced motion option disables or simplifies animations for users who prefer it
+- Lazy loading of heavier animation components
+
+## 🚀 Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the development server:
+   ```
+   npm start
+   ```
+4. Build for production:
+   ```
+   npm run build
+   ```
+
+## 📄 Component Documentation
+
+### AnimateOnScroll
+
+```jsx
+<AnimateOnScroll
+  variant="fadeIn" // Animation type: fadeIn, zoomIn, textVariant
+  direction="up" // For fadeIn: up, down, left, right
+  delay={0.2} // Delay before animation starts
+  duration={0.5} // Animation duration
+>
+  <YourComponent />
+</AnimateOnScroll>
+```
+
+### BackgroundAnimation
+
+```jsx
+<BackgroundAnimation
+  type="particles" // Animation type
+  color="indigo" // Color scheme
+  density={50} // Particle density
+  showButterflies={true} // Enable butterfly elements
+  enabled={true} // Whether animation is active
+/>
+```
+
+### AnimatedButton
+
+```jsx
+<AnimatedButton
+  variant="primary" // Button style: primary, secondary, outline, ghost
+  hoverEffect="scaleWithShadow" // Effect: scale, scaleWithShadow, bounce, glow
+>
+  Click Me
+</AnimatedButton>
+```
+
+## 🌐 Browser Support
+
+- Chrome, Firefox, Safari, Edge (latest versions)
+- Fallbacks for browsers that don't support advanced CSS features
+
+## 📝 License
+
+MIT License 
