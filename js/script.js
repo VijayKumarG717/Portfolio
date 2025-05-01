@@ -20,74 +20,50 @@ AOS.init({
 
 // Dark Mode Toggle Function
 function initDarkMode() {
-    // Check for saved theme preference or use the preferred color scheme
-    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
     
-    // Apply the saved theme or use the system preference
-    if (savedTheme === 'dark' || (!savedTheme && prefersDarkMode)) {
+    // Apply the saved theme or use light mode as default
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
         document.body.classList.add('dark-mode');
-        updateDarkModeToggle(true);
+        document.querySelector('.theme-toggle i').className = 'fas fa-sun';
     } else {
+        document.documentElement.setAttribute('data-theme', 'light');
         document.body.classList.remove('dark-mode');
-        updateDarkModeToggle(false);
+        document.querySelector('.theme-toggle i').className = 'fas fa-moon';
     }
     
-    // Add click event to existing theme toggle
+    // Add click event to theme toggle
     const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
-        themeToggle.removeEventListener('click', toggleDarkMode); // Remove any existing listeners
-        themeToggle.addEventListener('click', toggleDarkMode);
+        // Clear any existing click events
+        const newThemeToggle = themeToggle.cloneNode(true);
+        themeToggle.parentNode.replaceChild(newThemeToggle, themeToggle);
+        
+        // Add the click event
+        newThemeToggle.addEventListener('click', function() {
+            toggleDarkMode();
+        });
     }
 }
 
 // Toggle between light and dark mode
 function toggleDarkMode() {
-    console.log('Toggle dark mode called');
+    // Get current theme
+    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
     
-    // Toggle the dark-mode class
-    if (document.body.classList.contains('dark-mode')) {
+    // Switch to the opposite theme
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
         document.body.classList.remove('dark-mode');
+        document.querySelector('.theme-toggle i').className = 'fas fa-moon';
         localStorage.setItem('theme', 'light');
-        updateDarkModeToggle(false);
     } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
         document.body.classList.add('dark-mode');
+        document.querySelector('.theme-toggle i').className = 'fas fa-sun';
         localStorage.setItem('theme', 'dark');
-        updateDarkModeToggle(true);
-    }
-    
-    // Force a layout recalculation
-    document.body.offsetHeight;
-    
-    // Log the current state to verify
-    console.log('Dark mode active:', document.body.classList.contains('dark-mode'));
-    
-    // Trigger CSS transition updates on key elements
-    const elementsToUpdate = [
-        '.hero-section', 
-        '.modern-card', 
-        '.section-title', 
-        '.project-card', 
-        '.skill-tag',
-        '.modern-navbar'
-    ];
-    
-    elementsToUpdate.forEach(selector => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach(el => {
-            // Trigger a reflow
-            void el.offsetHeight;
-        });
-    });
-}
-
-// Update the dark mode toggle icon
-function updateDarkModeToggle(isDarkMode) {
-    const themeToggle = document.querySelector('.theme-toggle');
-    if (themeToggle) {
-        themeToggle.innerHTML = isDarkMode ? 
-            '<i class="fas fa-sun"></i>' : 
-            '<i class="fas fa-moon"></i>';
     }
 }
 
