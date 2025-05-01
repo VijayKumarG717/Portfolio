@@ -136,7 +136,7 @@ const ContactSection = () => {
                   </svg>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">Email</h4>
-                    <a href="mailto:example@domain.com" className="hover:underline">example@domain.com</a>
+                    <a href="mailto:vijaykumar160902@gmail.com" className="hover:underline">vijaykumar160902@gmail.com</a>
                   </div>
                 </div>
                 
@@ -146,7 +146,7 @@ const ContactSection = () => {
                   </svg>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">Phone</h4>
-                    <a href="tel:+1234567890" className="hover:underline">+1 (234) 567-890</a>
+                    <a href="tel:+919154717819" className="hover:underline">+91 9154717819</a>
                   </div>
                 </div>
                 
@@ -166,7 +166,9 @@ const ContactSection = () => {
                 <h4 className="text-lg font-semibold mb-4">Connect</h4>
                 <div className="flex space-x-4">
                   <motion.a 
-                    href="#" 
+                    href="https://github.com/VijayKumarG717" 
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full p-3 transition-colors duration-300"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
@@ -249,7 +251,7 @@ const Footer = () => {
           className="flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-600 dark:text-gray-300 mb-4 md:mb-0">
-            © {new Date().getFullYear()} Your Name. All rights reserved.
+            © {new Date().getFullYear()} Vijay Kumar G. All rights reserved.
           </p>
           
           <div className="flex space-x-4">
@@ -278,7 +280,7 @@ const Home = () => {
       
       <main>
         <HeroSection 
-          title="Hi, I'm Your Name"
+          title="Hi, I'm Vijay Kumar G"
           subtitle="Full Stack Developer"
           description="I build modern, responsive web applications with React, Node.js, and more."
           enableParticles={true}
