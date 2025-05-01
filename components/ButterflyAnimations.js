@@ -8,6 +8,7 @@ class ButterflyAnimations {
     this.currentAnimation = null;
     this.isEnabled = true;
     this.selectorContainer = null;
+    this.selectorVisible = false;
     
     // Initialize the component
     this.init();
@@ -20,13 +21,12 @@ class ButterflyAnimations {
     // Add event listeners
     this.addEventListeners();
     
-    // Load default animation (None by default - user must select)
+    // Default to Lottie animation without showing controls
     setTimeout(() => {
-      // Select lottie animation by default
-      const lottieButton = document.querySelector('.butterfly-option-btn[data-animation="lottie"]');
-      if (lottieButton) {
-        lottieButton.click();
-      }
+      // Auto-select lottie animation by default
+      this.loadAnimation('lottie');
+      // Hide the selector by default
+      this.toggleSelectorVisibility(false);
     }, 1000);
   }
   
@@ -41,24 +41,45 @@ class ButterflyAnimations {
       left: 20px;
       padding: 5px;
       border-radius: 20px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(5px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       align-items: center;
       z-index: 100;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
+      transform: translateY(100px);
+      opacity: 0;
     `;
     
-    // Create label
-    const label = document.createElement('span');
-    label.textContent = 'Butterfly Animation:';
-    label.style.cssText = `
+    // Create help icon instead of label
+    const helpIcon = document.createElement('button');
+    helpIcon.className = 'butterfly-toggle-visibility';
+    helpIcon.innerHTML = '<i class="fas fa-butterfly"></i>';
+    helpIcon.title = 'Toggle butterfly settings';
+    helpIcon.style.cssText = `
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--primary-color, #4f46e5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
       font-size: 12px;
-      margin: 0 8px;
-      color: var(--text-color, #1e293b);
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 101;
     `;
+    
+    document.body.appendChild(helpIcon);
     
     // Create animation options
     const options = [
@@ -71,7 +92,7 @@ class ButterflyAnimations {
     // Create option buttons
     options.forEach(option => {
       const button = document.createElement('button');
-      button.className = `butterfly-option-btn ${option.id === 'none' ? 'active' : ''}`;
+      button.className = `butterfly-option-btn ${option.id === 'lottie' ? 'active' : ''}`;
       button.title = `${option.name} Animation`;
       button.dataset.animation = option.id;
       button.innerHTML = `<i class="fas ${option.icon}"></i>`;
@@ -96,41 +117,40 @@ class ButterflyAnimations {
       this.selectorContainer.appendChild(button);
     });
     
-    // Add label to container
-    this.selectorContainer.prepend(label);
-    
     // Add container to body
     document.body.appendChild(this.selectorContainer);
     
-    // Add styles for active button and dark mode
-    const styles = document.createElement('style');
-    styles.textContent = `
-      .butterfly-option-btn.active {
-        background: var(--primary-color, #4f46e5) !important;
-        color: white !important;
-        transform: scale(1.1);
-      }
-      
-      .butterfly-option-btn:hover {
-        transform: scale(1.1);
-      }
-      
-      body.dark-mode .butterfly-animation-selector {
-        background: rgba(0, 0, 0, 0.2);
-        border-color: rgba(255, 255, 255, 0.05);
-      }
-      
-      body.dark-mode .butterfly-animation-selector span {
-        color: var(--text-color-dark, #f1f5f9);
-      }
-      
-      body.dark-mode .butterfly-option-btn {
-        background: rgba(0, 0, 0, 0.2);
-        color: var(--primary-color, #8b5cf6);
-      }
-    `;
+    // Add click event to help icon
+    helpIcon.addEventListener('click', () => {
+      this.toggleSelectorVisibility();
+    });
+  }
+  
+  toggleSelectorVisibility(show = null) {
+    if (show !== null) {
+      this.selectorVisible = show;
+    } else {
+      this.selectorVisible = !this.selectorVisible;
+    }
     
-    document.head.appendChild(styles);
+    if (this.selectorVisible) {
+      this.selectorContainer.style.transform = 'translateY(0)';
+      this.selectorContainer.style.opacity = '1';
+    } else {
+      this.selectorContainer.style.transform = 'translateY(100px)';
+      this.selectorContainer.style.opacity = '0';
+    }
+    
+    // Auto-hide after 5 seconds
+    if (this.selectorVisible) {
+      if (this.autoHideTimeout) {
+        clearTimeout(this.autoHideTimeout);
+      }
+      
+      this.autoHideTimeout = setTimeout(() => {
+        this.toggleSelectorVisibility(false);
+      }, 5000);
+    }
   }
   
   addEventListeners() {
@@ -144,7 +164,25 @@ class ButterflyAnimations {
         
         // Load selected animation
         this.loadAnimation(button.dataset.animation);
+        
+        // Reset auto-hide timer
+        if (this.autoHideTimeout) {
+          clearTimeout(this.autoHideTimeout);
+        }
+        
+        this.autoHideTimeout = setTimeout(() => {
+          this.toggleSelectorVisibility(false);
+        }, 3000);
       });
+    });
+    
+    // Hide selector when clicking elsewhere
+    document.addEventListener('click', (event) => {
+      if (this.selectorVisible && 
+          !event.target.closest('.butterfly-animation-selector') && 
+          !event.target.closest('.butterfly-toggle-visibility')) {
+        this.toggleSelectorVisibility(false);
+      }
     });
   }
   
@@ -208,14 +246,6 @@ class ButterflyAnimations {
     document.querySelector('.butterfly-video-container')?.remove();
     document.querySelector('.butterfly-video-toggle')?.remove();
     document.querySelector('.butterfly-opacity-slider')?.remove();
-    
-    // Remove any animation styles added dynamically
-    const dynamicStyles = document.querySelectorAll('style');
-    dynamicStyles.forEach(style => {
-      if (style.textContent.includes('butterfly')) {
-        style.remove();
-      }
-    });
   }
   
   loadScript(src, callback) {

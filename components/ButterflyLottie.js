@@ -6,118 +6,102 @@
 class ButterflyLottie {
   constructor() {
     this.butterflyContainer = null;
-    this.toggleButton = null;
     this.isEnabled = true;
+    this.butterflies = [];
+    this.butterflyCount = 3;
     
     // Initialize the component
     this.init();
   }
 
   init() {
-    // Create container for the butterfly
-    this.createContainer();
-    
-    // Create toggle button
-    this.createToggleButton();
-    
-    // Set up lottie animation
-    this.setupLottieAnimation();
-    
-    // Add event listeners
-    this.addEventListeners();
+    // Create multiple butterflies
+    for (let i = 0; i < this.butterflyCount; i++) {
+      this.createButterfly(i);
+    }
   }
   
-  createContainer() {
-    // Create the container for the butterfly animation
-    this.butterflyContainer = document.createElement('div');
-    this.butterflyContainer.className = 'butterfly-lottie-container';
+  createButterfly(index) {
+    // Create container for the butterfly
+    const butterflyContainer = document.createElement('div');
+    butterflyContainer.className = 'butterfly-lottie-container';
     
-    // Random initial position
-    const randomX = Math.floor(Math.random() * (window.innerWidth * 0.7));
-    const randomY = Math.floor(Math.random() * (window.innerHeight * 0.7));
+    // Random position for each butterfly
+    const randomX = Math.floor(Math.random() * (window.innerWidth * 0.8));
+    const randomY = Math.floor(Math.random() * (window.innerHeight * 0.8));
+    const randomSize = 80 + Math.floor(Math.random() * 70); // Random size between 80-150px
+    const randomOpacity = 0.3 + (Math.random() * 0.3); // Random opacity between 0.3-0.6
+    const randomDelay = Math.random() * 5; // Random animation delay
+    const randomDuration = 25 + (Math.random() * 15); // Random duration between 25-40s
     
-    this.butterflyContainer.style.cssText = `
+    butterflyContainer.style.cssText = `
       position: fixed;
       top: ${randomY}px;
       left: ${randomX}px;
-      width: 150px;
-      height: 150px;
+      width: ${randomSize}px;
+      height: ${randomSize}px;
       z-index: 10;
       pointer-events: none;
-      opacity: 0.7;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
-      animation: butterfly-float 20s ease-in-out infinite;
+      opacity: ${randomOpacity};
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+      animation: butterfly-float-${index} ${randomDuration}s ease-in-out infinite;
+      animation-delay: ${randomDelay}s;
     `;
     
-    document.body.appendChild(this.butterflyContainer);
+    document.body.appendChild(butterflyContainer);
+    
+    // Create unique animation for this butterfly
+    this.createUniqueAnimation(index, randomDuration);
+    
+    // Create simple butterfly in the container
+    this.createSimpleButterfly(butterflyContainer, index);
+    
+    // Store reference to container
+    this.butterflies.push(butterflyContainer);
   }
   
-  createToggleButton() {
-    // Create toggle button
-    this.toggleButton = document.createElement('button');
-    this.toggleButton.className = 'butterfly-toggle-btn';
-    this.toggleButton.innerHTML = '<i class="fas fa-butterfly"></i>';
-    this.toggleButton.title = 'Toggle butterfly animation';
+  createUniqueAnimation(index, duration) {
+    // Generate a unique keyframe animation for each butterfly
+    const styleElement = document.createElement('style');
     
-    this.toggleButton.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--primary-color, #4f46e5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 100;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      font-size: 16px;
-    `;
+    // Create random waypoints for this butterfly
+    const waypoints = [];
+    const waypointCount = 5;
     
-    document.body.appendChild(this.toggleButton);
-  }
-  
-  setupLottieAnimation() {
-    // Check if Lottie is available
-    if (typeof lottie === 'undefined') {
-      console.error('Lottie library is not loaded');
+    for (let i = 0; i < waypointCount; i++) {
+      const xPercent = Math.random() * 100;
+      const yPercent = Math.random() * 100;
+      const rotate = Math.random() * 20 - 10; // -10 to +10 degrees
+      const scale = 0.9 + Math.random() * 0.2; // 0.9 to 1.1
       
-      // Create a fallback animation
-      this.createFallbackAnimation();
-      return;
+      waypoints.push({
+        x: xPercent,
+        y: yPercent,
+        rotate,
+        scale
+      });
     }
     
-    // Try to load from assets folder
-    fetch('./assets/butterfly-animation.json')
-      .then(response => response.json())
-      .then(animationData => {
-        this.animation = lottie.loadAnimation({
-          container: this.butterflyContainer,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          animationData: animationData
-        });
-      })
-      .catch(err => {
-        console.warn('Failed to load butterfly animation:', err);
-        this.createSimpleButterfly();
-      });
+    // Create keyframes CSS
+    let keyframesCSS = `@keyframes butterfly-float-${index} {`;
+    
+    waypoints.forEach((waypoint, i) => {
+      const percent = (i / (waypointCount - 1)) * 100;
+      keyframesCSS += `
+        ${percent}% {
+          transform: translate(${waypoint.x}vw, ${waypoint.y}vh) rotate(${waypoint.rotate}deg) scale(${waypoint.scale});
+        }
+      `;
+    });
+    
+    keyframesCSS += `}`;
+    
+    styleElement.textContent = keyframesCSS;
+    document.head.appendChild(styleElement);
   }
   
-  createFallbackAnimation() {
-    // Create a simple SVG butterfly as fallback
-    this.createSimpleButterfly();
-  }
-  
-  createSimpleButterfly() {
-    // Define simple SVG butterfly
+  createSimpleButterfly(container, index) {
+    // Create SVG element
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("viewBox", "0 0 100 100");
@@ -140,31 +124,44 @@ class ButterflyLottie {
     head.setAttribute("r", "5");
     head.setAttribute("fill", "#333");
     
+    // Get a random blue-purple color
+    const colors = [
+      "#4f46e5", // indigo
+      "#8b5cf6", // violet 
+      "#6366f1", // blue
+      "#3b82f6", // bright blue
+      "#a78bfa"  // purple
+    ];
+    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+    
     // Create butterfly wings
     const leftWing = document.createElementNS(svgNS, "path");
     leftWing.setAttribute("d", "M 50,30 C 30,10 10,40 30,60 C 40,70 50,50 50,40 Z");
-    leftWing.setAttribute("fill", "#4f46e5");
+    leftWing.setAttribute("fill", randomColor);
     leftWing.setAttribute("stroke", "#333");
-    leftWing.setAttribute("stroke-width", "1");
-    leftWing.setAttribute("class", "wing left-wing");
+    leftWing.setAttribute("stroke-width", "0.5");
+    leftWing.setAttribute("class", `wing left-wing-${index}`);
     
     const rightWing = document.createElementNS(svgNS, "path");
     rightWing.setAttribute("d", "M 50,30 C 70,10 90,40 70,60 C 60,70 50,50 50,40 Z");
-    rightWing.setAttribute("fill", "#4f46e5");
+    rightWing.setAttribute("fill", randomColor);
     rightWing.setAttribute("stroke", "#333");
-    rightWing.setAttribute("stroke-width", "1");
-    rightWing.setAttribute("class", "wing right-wing");
+    rightWing.setAttribute("stroke-width", "0.5");
+    rightWing.setAttribute("class", `wing right-wing-${index}`);
+    
+    // Unique animation speed for each butterfly's wings
+    const wingSpeed = 0.3 + (Math.random() * 0.4); // 0.3s to 0.7s
     
     // Add animation to wings
     const style = document.createElementNS(svgNS, "style");
     style.textContent = `
-      .left-wing {
+      .left-wing-${index} {
         transform-origin: right center;
-        animation: wing-flap 0.5s infinite ease-in-out;
+        animation: wing-flap ${wingSpeed}s infinite ease-in-out;
       }
-      .right-wing {
+      .right-wing-${index} {
         transform-origin: left center;
-        animation: wing-flap 0.5s infinite ease-in-out alternate;
+        animation: wing-flap ${wingSpeed}s infinite ease-in-out alternate;
       }
     `;
     
@@ -176,47 +173,13 @@ class ButterflyLottie {
     svg.appendChild(head);
     
     // Add SVG to container
-    this.butterflyContainer.appendChild(svg);
-  }
-  
-  addEventListeners() {
-    // Toggle button click handler
-    this.toggleButton.addEventListener('click', () => {
-      this.isEnabled = !this.isEnabled;
-      
-      if (this.isEnabled) {
-        this.butterflyContainer.style.display = 'block';
-        this.toggleButton.innerHTML = '<i class="fas fa-butterfly"></i>';
-        if (this.animation) {
-          this.animation.play();
-        }
-      } else {
-        this.butterflyContainer.style.display = 'none';
-        this.toggleButton.innerHTML = '<i class="fas fa-play"></i>';
-        if (this.animation) {
-          this.animation.pause();
-        }
-      }
-    });
-    
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      if (this.butterflyContainer) {
-        // Reposition butterfly when window is resized
-        const maxX = window.innerWidth * 0.7;
-        const maxY = window.innerHeight * 0.7;
-        
-        this.butterflyContainer.style.left = `${Math.min(parseInt(this.butterflyContainer.style.left), maxX)}px`;
-        this.butterflyContainer.style.top = `${Math.min(parseInt(this.butterflyContainer.style.top), maxY)}px`;
-      }
-    });
+    container.appendChild(svg);
   }
 }
 
-// Initialize butterfly animation when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  // Wait a bit for page to fully render
-  setTimeout(() => {
-    new ButterflyLottie();
-  }, 1000);
-}); 
+// Initialize butterfly animation when DOM is loaded - not needed, handled by ButterflyAnimations.js
+// document.addEventListener('DOMContentLoaded', () => {
+//   setTimeout(() => {
+//     new ButterflyLottie();
+//   }, 1000);
+// }); 
