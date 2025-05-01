@@ -825,11 +825,42 @@ body.dark-mode .bar {
   color: var(--text-light);
 }
 
+/* Global transitions for dark mode */
+body,
+section,
+.modern-card,
+.hero-section,
+.hero-content,
+.hero-content h1,
+.hero-focus,
+.profession,
+.skill-tag,
+.project-card,
+.project-content h3,
+.project-content p,
+.project-tags span,
+footer,
+.nav-links a,
+.logo-text,
+.logo-accent,
+.theme-toggle,
+.nav-icon,
+.modern-navbar,
+.section-title,
+h2, h3, h4, p, span,
+.glass-card,
+.education-item * {
+  transition: background 0.3s ease, 
+              background-color 0.3s ease, 
+              color 0.3s ease, 
+              border-color 0.3s ease, 
+              box-shadow 0.3s ease;
+}
+
 /* Body background for dark mode */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.dark-mode .section-title {
@@ -865,7 +896,6 @@ body.dark-mode .project-tags span {
 footer {
   background-color: var(--background-alt);
   color: var(--text-color);
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Skills section dark mode enhancement */

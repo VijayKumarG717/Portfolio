@@ -44,6 +44,8 @@ function initDarkMode() {
 // Toggle between light and dark mode
 function toggleDarkMode() {
     console.log('Toggle dark mode called');
+    
+    // Toggle the dark-mode class
     if (document.body.classList.contains('dark-mode')) {
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
@@ -53,6 +55,30 @@ function toggleDarkMode() {
         localStorage.setItem('theme', 'dark');
         updateDarkModeToggle(true);
     }
+    
+    // Force a layout recalculation
+    document.body.offsetHeight;
+    
+    // Log the current state to verify
+    console.log('Dark mode active:', document.body.classList.contains('dark-mode'));
+    
+    // Trigger CSS transition updates on key elements
+    const elementsToUpdate = [
+        '.hero-section', 
+        '.modern-card', 
+        '.section-title', 
+        '.project-card', 
+        '.skill-tag',
+        '.modern-navbar'
+    ];
+    
+    elementsToUpdate.forEach(selector => {
+        const elements = document.querySelectorAll(selector);
+        elements.forEach(el => {
+            // Trigger a reflow
+            void el.offsetHeight;
+        });
+    });
 }
 
 // Update the dark mode toggle icon
