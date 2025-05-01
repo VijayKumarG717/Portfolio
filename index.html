@@ -11,82 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
-    <!-- Butterfly Animation CSS -->
-    <style>
-        /* Base styles for butterfly animations */
-        .butterfly-option-btn.active {
-            background: var(--primary-color, #4f46e5) !important;
-            color: white !important;
-            transform: scale(1.1);
-        }
-        
-        .butterfly-option-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Dark mode support */
-        body.dark-mode .butterfly-animation-selector,
-        body.dark-mode .butterfly-toggle-visibility {
-            background: rgba(0, 0, 0, 0.2);
-            border-color: rgba(255, 255, 255, 0.05);
-        }
-        
-        body.dark-mode .butterfly-toggle-visibility {
-            color: var(--primary-color, #8b5cf6);
-        }
-        
-        body.dark-mode .butterfly-animation-selector span {
-            color: var(--text-color-dark, #f1f5f9);
-        }
-        
-        body.dark-mode .butterfly-option-btn {
-            background: rgba(0, 0, 0, 0.2);
-            color: var(--primary-color, #8b5cf6);
-        }
-        
-        /* Butterfly animation keyframes */
-        @keyframes butterfly-float {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            25% { transform: translateY(-20px) translateX(15px); }
-            50% { transform: translateY(0) translateX(30px); }
-            75% { transform: translateY(20px) translateX(15px); }
-        }
-        
-        @keyframes butterfly-fallback-bg {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes wing-flap {
-            0% { transform: rotateY(0deg); }
-            50% { transform: rotateY(70deg); }
-            100% { transform: rotateY(0deg); }
-        }
-        
-        /* Custom butterfly icon for Font Awesome fallback */
-        .fa-butterfly:before {
-            content: "\f18ec";
-        }
-        
-        /* If Font Awesome butterfly icon is missing, use custom unicode butterfly */
-        .fa-butterfly.fa-missing:before {
-            content: "🦋";
-            font-family: sans-serif;
-        }
-        
-        /* Hide initial animation controls and only show on hover/interaction */
-        .butterfly-toggle-visibility {
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-        
-        .butterfly-toggle-visibility:hover {
-            opacity: 1;
-            transform: scale(1.1);
-        }
-    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -485,21 +409,10 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    
-    <!-- Required dependencies for butterfly animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-    
-    <!-- Main scripts -->
     <script src="./js/script.js"></script>
     <script src="./js/stars.js"></script>
     <script src="./js/enhanced.js"></script>
     <script src="./js/project-data.js"></script>
     <script src="./js/skills-component.js"></script>
-    
-    <!-- Butterfly Animation Scripts -->
-    <script src="./components/ButterflyLottie.js"></script>
-    <script src="./components/ButterflyFramerMotion.js"></script>
-    <script src="./components/ButterflyVideo.js"></script>
-    <script src="./components/ButterflyAnimations.js"></script>
 </body>
 </html> 
