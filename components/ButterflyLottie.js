@@ -3,8 +3,6 @@
  * Realistic butterfly animation using Lottie
  */
 
-// This component will need the lottie-react package and a butterfly animation JSON file
-
 class ButterflyLottie {
   constructor() {
     this.butterflyContainer = null;
@@ -44,7 +42,7 @@ class ButterflyLottie {
       left: ${randomX}px;
       width: 150px;
       height: 150px;
-      z-index: 0;
+      z-index: 10;
       pointer-events: none;
       opacity: 0.7;
       filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
@@ -83,66 +81,102 @@ class ButterflyLottie {
     `;
     
     document.body.appendChild(this.toggleButton);
-    
-    // Add dark mode styles
-    const darkModeStyles = document.createElement('style');
-    darkModeStyles.textContent = `
-      body.dark-mode .butterfly-toggle-btn {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        color: var(--primary-color, #8b5cf6);
-      }
-      
-      .butterfly-toggle-btn:hover {
-        transform: scale(1.1);
-      }
-      
-      @keyframes butterfly-float {
-        0% {
-          transform: translateY(0px) translateX(0px) rotate(0deg);
-        }
-        25% {
-          transform: translateY(-20px) translateX(15px) rotate(5deg);
-        }
-        50% {
-          transform: translateY(0px) translateX(30px) rotate(0deg);
-        }
-        75% {
-          transform: translateY(20px) translateX(15px) rotate(-5deg);
-        }
-        100% {
-          transform: translateY(0px) translateX(0px) rotate(0deg);
-        }
-      }
-    `;
-    
-    document.head.appendChild(darkModeStyles);
   }
   
   setupLottieAnimation() {
-    // We'll use a script tag to load Lottie and the animation data
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js';
+    // Check if Lottie is available
+    if (typeof lottie === 'undefined') {
+      console.error('Lottie library is not loaded');
+      
+      // Create a fallback animation
+      this.createFallbackAnimation();
+      return;
+    }
     
-    script.onload = () => {
-      // Once Lottie is loaded, load and render the animation
-      fetch('assets/butterfly-animation.json')
-        .then(response => response.json())
-        .then(animationData => {
-          this.animation = lottie.loadAnimation({
-            container: this.butterflyContainer,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            animationData: animationData
-          });
-        })
-        .catch(err => {
-          console.error('Failed to load butterfly animation:', err);
+    // Try to load from assets folder
+    fetch('./assets/butterfly-animation.json')
+      .then(response => response.json())
+      .then(animationData => {
+        this.animation = lottie.loadAnimation({
+          container: this.butterflyContainer,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: animationData
         });
-    };
+      })
+      .catch(err => {
+        console.warn('Failed to load butterfly animation:', err);
+        this.createSimpleButterfly();
+      });
+  }
+  
+  createFallbackAnimation() {
+    // Create a simple SVG butterfly as fallback
+    this.createSimpleButterfly();
+  }
+  
+  createSimpleButterfly() {
+    // Define simple SVG butterfly
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
     
-    document.head.appendChild(script);
+    // Create butterfly body
+    const body = document.createElementNS(svgNS, "line");
+    body.setAttribute("x1", "50");
+    body.setAttribute("y1", "20");
+    body.setAttribute("x2", "50");
+    body.setAttribute("y2", "80");
+    body.setAttribute("stroke", "#333");
+    body.setAttribute("stroke-width", "2");
+    
+    // Create butterfly head
+    const head = document.createElementNS(svgNS, "circle");
+    head.setAttribute("cx", "50");
+    head.setAttribute("cy", "20");
+    head.setAttribute("r", "5");
+    head.setAttribute("fill", "#333");
+    
+    // Create butterfly wings
+    const leftWing = document.createElementNS(svgNS, "path");
+    leftWing.setAttribute("d", "M 50,30 C 30,10 10,40 30,60 C 40,70 50,50 50,40 Z");
+    leftWing.setAttribute("fill", "#4f46e5");
+    leftWing.setAttribute("stroke", "#333");
+    leftWing.setAttribute("stroke-width", "1");
+    leftWing.setAttribute("class", "wing left-wing");
+    
+    const rightWing = document.createElementNS(svgNS, "path");
+    rightWing.setAttribute("d", "M 50,30 C 70,10 90,40 70,60 C 60,70 50,50 50,40 Z");
+    rightWing.setAttribute("fill", "#4f46e5");
+    rightWing.setAttribute("stroke", "#333");
+    rightWing.setAttribute("stroke-width", "1");
+    rightWing.setAttribute("class", "wing right-wing");
+    
+    // Add animation to wings
+    const style = document.createElementNS(svgNS, "style");
+    style.textContent = `
+      .left-wing {
+        transform-origin: right center;
+        animation: wing-flap 0.5s infinite ease-in-out;
+      }
+      .right-wing {
+        transform-origin: left center;
+        animation: wing-flap 0.5s infinite ease-in-out alternate;
+      }
+    `;
+    
+    // Add elements to SVG
+    svg.appendChild(style);
+    svg.appendChild(leftWing);
+    svg.appendChild(rightWing);
+    svg.appendChild(body);
+    svg.appendChild(head);
+    
+    // Add SVG to container
+    this.butterflyContainer.appendChild(svg);
   }
   
   addEventListeners() {

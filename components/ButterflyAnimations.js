@@ -20,8 +20,14 @@ class ButterflyAnimations {
     // Add event listeners
     this.addEventListeners();
     
-    // Load default animation (Lottie)
-    this.loadAnimation('lottie');
+    // Load default animation (None by default - user must select)
+    setTimeout(() => {
+      // Select lottie animation by default
+      const lottieButton = document.querySelector('.butterfly-option-btn[data-animation="lottie"]');
+      if (lottieButton) {
+        lottieButton.click();
+      }
+    }, 1000);
   }
   
   createAnimationSelector() {
@@ -65,7 +71,7 @@ class ButterflyAnimations {
     // Create option buttons
     options.forEach(option => {
       const button = document.createElement('button');
-      button.className = `butterfly-option-btn ${option.id === 'lottie' ? 'active' : ''}`;
+      button.className = `butterfly-option-btn ${option.id === 'none' ? 'active' : ''}`;
       button.title = `${option.name} Animation`;
       button.dataset.animation = option.id;
       button.innerHTML = `<i class="fas ${option.icon}"></i>`;
@@ -148,20 +154,44 @@ class ButterflyAnimations {
     
     // Load the selected animation
     if (type === 'lottie') {
-      this.loadScript('components/ButterflyLottie.js', () => {
-        this.currentAnimation = 'lottie';
-      });
+      this.loadAnimationDirectly('lottie');
     } else if (type === 'svg') {
-      this.loadScript('components/ButterflyFramerMotion.js', () => {
-        this.currentAnimation = 'svg';
-      });
+      this.loadAnimationDirectly('svg');
     } else if (type === 'video') {
-      this.loadScript('components/ButterflyVideo.js', () => {
-        this.currentAnimation = 'video';
-      });
+      this.loadAnimationDirectly('video');
     } else {
       // No animation selected
       this.currentAnimation = null;
+    }
+  }
+  
+  loadAnimationDirectly(type) {
+    // Directly instantiate the animation classes instead of loading scripts
+    switch(type) {
+      case 'lottie':
+        if (typeof ButterflyLottie !== 'undefined') {
+          new ButterflyLottie();
+          this.currentAnimation = 'lottie';
+        } else {
+          console.error('ButterflyLottie class not found');
+        }
+        break;
+      case 'svg':
+        if (typeof ButterflyFramerMotion !== 'undefined') {
+          new ButterflyFramerMotion();
+          this.currentAnimation = 'svg';
+        } else {
+          console.error('ButterflyFramerMotion class not found');
+        }
+        break;
+      case 'video':
+        if (typeof ButterflyVideo !== 'undefined') {
+          new ButterflyVideo();
+          this.currentAnimation = 'video';
+        } else {
+          console.error('ButterflyVideo class not found');
+        }
+        break;
     }
   }
   
@@ -203,6 +233,7 @@ class ButterflyAnimations {
 document.addEventListener('DOMContentLoaded', () => {
   // Wait for page to fully render
   setTimeout(() => {
+    console.log('Initializing ButterflyAnimations controller');
     new ButterflyAnimations();
-  }, 500);
+  }, 1000);
 }); 
