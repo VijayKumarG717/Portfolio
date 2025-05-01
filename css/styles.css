@@ -2961,12 +2961,13 @@ body.dark-mode .two-column-skills .skill-bar {
     padding-bottom: 5rem;
 }
 
-/* Clean Skills Section */
+/* Clean Skills Section - Fixed Layout */
 .clean-skills-container {
     display: flex;
     gap: 2.5rem;
     max-width: 1100px;
     margin: 0 auto;
+    justify-content: space-between;
 }
 
 .skills-column {
@@ -2976,6 +2977,8 @@ body.dark-mode .two-column-skills .skill-bar {
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
+    position: relative;
+    min-width: calc(50% - 1.25rem);
 }
 
 .skills-column:hover {
@@ -3015,7 +3018,7 @@ body.dark-mode .two-column-skills .skill-bar {
     align-items: center;
     padding: 0.75rem 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    transition: background-color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .skill-item:last-child {
@@ -3026,6 +3029,7 @@ body.dark-mode .two-column-skills .skill-bar {
     background-color: rgba(79, 70, 229, 0.03);
     border-radius: 8px;
     padding-left: 0.5rem;
+    transform: translateX(5px);
 }
 
 .skill-item i {
@@ -3045,6 +3049,7 @@ body.dark-mode .two-column-skills .skill-bar {
 .skill-item:hover i {
     background-color: var(--primary-color);
     color: white;
+    transform: scale(1.1);
 }
 
 .skill-item span {
@@ -3070,7 +3075,26 @@ body.dark-mode .skill-item i {
     background-color: rgba(79, 70, 229, 0.2);
 }
 
-/* Media Queries */
+/* Override any previous styles that might cause conflict */
+.two-column-skills,
+.professional-skills-container,
+.skills-category,
+.skills-grid,
+.skill-card,
+.skill-header,
+.skill-bar,
+.skill-level,
+.skill-percentage {
+    display: none !important;
+}
+
+#skills {
+    position: relative;
+    padding: 6rem 0;
+    overflow: visible;
+}
+
+/* Media queries for responsive design */
 @media (max-width: 992px) {
     .clean-skills-container {
         gap: 1.5rem;
@@ -3080,9 +3104,12 @@ body.dark-mode .skill-item i {
 @media (max-width: 768px) {
     .clean-skills-container {
         flex-direction: column;
+        align-items: center;
     }
     
     .skills-column {
+        width: 100%;
+        max-width: 100%;
         margin-bottom: 1.5rem;
     }
     
