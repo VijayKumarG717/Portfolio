@@ -14,12 +14,12 @@ const AnimatedCard = ({ children, className = "", isPrimary = false }) => {
   
   return (
     <motion.div 
-      className={`rounded-2xl shadow-lg overflow-hidden ${isPrimary ? primaryGradient : secondaryBg} h-full relative ${className}`}
+      className={`rounded-2xl shadow-xl overflow-hidden ${isPrimary ? primaryGradient : secondaryBg} h-full relative ${className}`}
       whileHover="hover"
       initial="initial"
       variants={{
-        initial: { boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.2)' },
-        hover: { boxShadow: '0 20px 40px -20px rgba(99, 102, 241, 0.4)' }
+        initial: { boxShadow: '0 10px 30px -15px rgba(0, 0, 0, 0.3)' },
+        hover: { boxShadow: '0 20px 40px -20px rgba(99, 102, 241, 0.7)' }
       }}
     >
       {/* Blinking border effect */}
@@ -30,11 +30,11 @@ const AnimatedCard = ({ children, className = "", isPrimary = false }) => {
             boxShadow: '0 0 0 0 rgba(99, 102, 241, 0)' 
           },
           hover: { 
-            boxShadow: ['0 0 0 2px rgba(99, 102, 241, 0.3)', 
-                        '0 0 0 4px rgba(99, 102, 241, 0.2)', 
-                        '0 0 0 2px rgba(99, 102, 241, 0.3)'],
+            boxShadow: ['0 0 0 2px rgba(99, 102, 241, 0.5)', 
+                        '0 0 0 4px rgba(99, 102, 241, 0.3)', 
+                        '0 0 0 2px rgba(99, 102, 241, 0.5)'],
             transition: {
-              duration: 1.5,
+              duration: 1.2,
               repeat: Infinity,
               ease: "easeInOut"
             }
@@ -157,7 +157,7 @@ const ContactSection = () => {
                   </svg>
                   <div>
                     <h4 className="text-lg font-semibold mb-1">Location</h4>
-                    <p>San Francisco, CA</p>
+                    <p>Andhra Pradesh, India</p>
                   </div>
                 </div>
               </div>
