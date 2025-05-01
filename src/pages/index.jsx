@@ -251,7 +251,7 @@ const Footer = () => {
           className="flex flex-col md:flex-row justify-between items-center"
         >
           <p className="text-gray-600 dark:text-gray-300 mb-4 md:mb-0">
-            © {new Date().getFullYear()} Vijay Kumar G. All rights reserved.
+            © 2023 Vijay Kumar G. All rights reserved.
           </p>
           
           <div className="flex space-x-4">
