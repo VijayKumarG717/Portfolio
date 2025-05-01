@@ -155,7 +155,7 @@ body.dark-mode {
 }
 
 .highlight {
-  background: var(--gradient-1);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -191,7 +191,7 @@ body.dark-mode {
 .hero-focus {
   font-size: 1.25rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-color);
   max-width: 600px;
   margin: 0 auto;
 }
@@ -207,7 +207,7 @@ body.dark-mode {
 
 .skill-tag {
   background: rgba(76, 201, 240, 0.15);
-  color: white;
+  color: var(--text-color);
   padding: 8px 16px;
   border-radius: 50px;
   font-size: 0.9rem;

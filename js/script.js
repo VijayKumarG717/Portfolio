@@ -33,22 +33,17 @@ function initDarkMode() {
         updateDarkModeToggle(false);
     }
     
-    // Create theme toggle button if it doesn't exist
-    if (!document.querySelector('.theme-toggle')) {
-        const themeToggle = document.createElement('div');
-        themeToggle.className = 'theme-toggle';
-        themeToggle.innerHTML = document.body.classList.contains('dark-mode') ? 
-            '<i class="fas fa-sun"></i>' : 
-            '<i class="fas fa-moon"></i>';
-        document.body.appendChild(themeToggle);
-        
-        // Add click event to toggle theme
+    // Add click event to existing theme toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (themeToggle) {
+        themeToggle.removeEventListener('click', toggleDarkMode); // Remove any existing listeners
         themeToggle.addEventListener('click', toggleDarkMode);
     }
 }
 
 // Toggle between light and dark mode
 function toggleDarkMode() {
+    console.log('Toggle dark mode called');
     if (document.body.classList.contains('dark-mode')) {
         document.body.classList.remove('dark-mode');
         localStorage.setItem('theme', 'light');
