@@ -71,14 +71,14 @@ export const AnimatedLink = ({
   ...props
 }) => {
   // Base link styles
-  const baseStyles = "relative inline-block font-medium";
+  const baseStyles = "relative inline-block font-medium transition-colors duration-200";
   
   // Color options for the underline
   const colorMap = {
-    indigo: "bg-indigo-500",
-    blue: "bg-blue-500",
-    violet: "bg-violet-500",
-    slate: "bg-slate-500"
+    indigo: "bg-indigo-500 dark:bg-indigo-400",
+    blue: "bg-blue-500 dark:bg-blue-400",
+    violet: "bg-violet-500 dark:bg-violet-400",
+    slate: "bg-slate-500 dark:bg-slate-400"
   };
   
   const underlineColorClass = colorMap[underlineColor] || colorMap.indigo;
@@ -95,7 +95,7 @@ export const AnimatedLink = ({
         className={`absolute left-0 bottom-0 h-0.5 w-0 ${underlineColorClass}`}
         initial={{ width: "0%" }}
         whileHover={{ width: "100%" }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       />
     </motion.a>
   );

@@ -210,13 +210,13 @@ const ContactSection = () => {
 // Example header with animated navigation
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 w-full bg-white dark:bg-gray-900 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-sm z-50 shadow-sm">
+    <header className="fixed top-0 left-0 w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-md z-50 shadow-lg border-b border-gray-200/20 dark:border-gray-700/20">
       <div className="container mx-auto px-4 md:px-6">
         <nav className="flex justify-between items-center h-16 md:h-20">
           <AnimateOnScroll
             variant="fadeIn"
             direction="left"
-            className="text-2xl font-bold text-indigo-600 dark:text-indigo-400"
+            className="text-2xl font-bold text-indigo-600 dark:text-indigo-300 hover:text-indigo-700 dark:hover:text-indigo-200 transition-colors duration-200"
           >
             Portfolio
           </AnimateOnScroll>
@@ -226,7 +226,7 @@ const Header = () => {
               <li key={item}>
                 <AnimatedLink
                   href={`#${item.toLowerCase()}`}
-                  className="px-3 py-2 text-gray-700 dark:text-gray-100 hover:text-indigo-600 dark:hover:text-indigo-400 font-medium"
+                  className="px-3 py-2 text-gray-800 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-300 font-medium transition-colors duration-200"
                   underlineColor="indigo"
                 >
                   {item}
